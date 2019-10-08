@@ -4,9 +4,95 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoneyLover"
+           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        WindowStyle="None"
+        Title="MainWindow" Height="500" Width="330">
+    <Grid Background="#db5c0f">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition>
+                
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <Image Source="./img/logo.jpg"></Image>
+       
+        <TextBlock Text="Lên kế hoạch tài chính thông minh và từng bước tiết kiệm để thực hiện hóa ước mơ."
+                   FontSize="15"
+                   HorizontalAlignment="Center"
+                   TextAlignment="Center"
+                   Grid.Row="1"
+                   FontFamily="Arial"
+                   Foreground="White"
+                   TextWrapping="Wrap"
+                   ></TextBlock>
+
+        <DockPanel Grid.Row="2" HorizontalAlignment="Center">
+            <Button
+                 Background="White"
+                    Width="10"
+                    Height="10"
+                Margin="10"
+                Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                materialDesign:ShadowAssist.ShadowDepth="Depth5">
+
+            </Button>
+            <Button
+                 Background="White"
+                    Width="10"
+                    Height="10"
+                Margin="10"
+                 Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" materialDesign:ShadowAssist.ShadowDepth="Depth5">
+
+            </Button>
+            <Button
+                   Background="White"
+                    Width="10"
+                    Height="10"
+                Margin="10"
+                 Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" materialDesign:ShadowAssist.ShadowDepth="Depth5">
+
+            </Button>
+            <Button
+                     Background="White"
+                    Width="10"
+                    Height="10"
+                Margin="10"
+    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+    materialDesign:ShadowAssist.ShadowDepth="Depth5">
+
+            </Button>
+            <Button
+                 Background="White"
+                    Width="10"
+                    Height="10"
+                Margin="10"
+    Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+    materialDesign:ShadowAssist.ShadowDepth="Depth5">
+
+            </Button>
+        </DockPanel>
+        <Button
+            Height="40"
+            Width="300"
+            Content="LẦN ĐẦU SỬ DỤNG MONEY LOVER"
+            Background="White"
+            FontSize="14"
+            FontFamily="Arial"
+            Foreground="Green"
+            Grid.Row="3"></Button>
+        <Button
+            Height="40"
+            Width="300"
+            Content="ĐÃ SỬ DỤNG MONEY LOVER"
+            Background="#db5c0f"
+            FontSize="14"
+            FontFamily="Arial"
+            Foreground="White"
+            BorderBrush="White"
+            Grid.Row="4"></Button>
     </Grid>
 </Window>

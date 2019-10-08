@@ -1,0 +1,68 @@
+﻿<Window x:Class="MoneyLover.DangKy"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MoneyLover"
+        mc:Ignorable="d"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Title="Đăng Ký" Height="180" Width="300">
+    <Grid Background="#eeeeee">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+
+            <RowDefinition>
+
+            </RowDefinition>
+
+        </Grid.RowDefinitions>
+        <TextBlock Text="Đăng ký bằng Email"
+                   HorizontalAlignment="Center"
+                   FontSize="14"
+                
+                   FontFamily="Arial"
+                   Foreground="Black"
+                   VerticalAlignment="Center"></TextBlock>
+
+        <TextBox
+            Grid.Row="1"
+            FontSize="10"
+            Foreground="Green"
+            VerticalAlignment="Center"
+            
+            materialDesign:HintAssist.Hint="Email"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            
+            
+            >
+
+        </TextBox>
+
+        <PasswordBox
+            x:Name="FloatingPasswordBox"
+            Grid.Row="2"
+            materialDesign:HintAssist.Hint="Mật khẩu"
+            FontSize="11"
+            Foreground="Green"
+            VerticalAlignment="Center" />
+        <Button Content="Đăng Ký" Width="280" Grid.Row="3" Height="30"
+                Background="Green" FontSize="11" FontFamily="Arial"
+                FontWeight="Bold"
+                >
+            
+        </Button>
+        <Button Content="Đăng Ký" Width="200" Grid.Row="4" Height="30"
+                BorderBrush="#eeeeee"  BorderThickness="0" 
+                Foreground="Green"
+                Background="#eeeeee" FontSize="11" FontFamily="Arial"
+                FontWeight="Bold"
+                >
+
+        </Button>
+    </Grid>
+</Window>
