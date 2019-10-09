@@ -1,0 +1,74 @@
+﻿<Window x:Class="MoneyLover.Views.DanhSachSTK"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MoneyLover.Views"
+        mc:Ignorable="d"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="DanhSachSTK" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <DockPanel>
+            <Label FontSize="20"
+                   HorizontalAlignment="Center"
+                   Margin="300 10 0 5" 
+                   >So Tiet Kiem</Label>
+                <Button  HorizontalAlignment="Right"
+                         Content="Them"
+                         Name="btnThem"
+                         Click="btnThem_Click"></Button>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock Text="Tong tien" Margin="300 10 0 5" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                <TextBox Width="100" Name="txbMaLop" Margin="0 10 300 20" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBox>
+            </DockPanel>
+            <TextBox Width="100" Name="txtName" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBox>
+            <ScrollViewer>
+                
+               <DataGrid FontFamily="Playfair Display " Height="auto" 
+                  Foreground="Maroon"
+                  Background="LightGoldenrodYellow"
+                  FontSize="15" Margin="10" IsReadOnly="True"
+                  Name="dgrDangKy" AutoGenerateColumns="False"
+                  ColumnWidth="*" >
+
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="Ma so" 
+                                        Binding="{Binding ACCTNO}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Tong so tien goc"
+                                        Binding="{Binding DEPOSITAMT}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Lai suat nam"
+                                        Binding="{Binding RATE}"></DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Ngay mo"
+                                        Binding="{Binding FRDATE,StringFormat=dd/MM/yyyy}"></DataGridTextColumn>
+
+                        <DataGridTemplateColumn Header="Chi tiết">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btnXoa" Width="100" 
+                                          Click="btnXoa_Click">Xoa</Button>
+                                </DataTemplate>
+
+                            </DataGridTemplateColumn.CellTemplate>
+
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Chi tiết">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btnSua" Width="100" 
+                                          Click="btnSua_Click">Sua</Button>
+                                </DataTemplate>
+
+                            </DataGridTemplateColumn.CellTemplate>
+
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+        </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -11,32 +11,35 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MoneyLover
+namespace MoneyLover.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for DanhSachSTK.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DanhSachSTK : Window
     {
-        public MainWindow()
+        public DanhSachSTK()
         {
             InitializeComponent();
             using (var db = new MoneyEntity())
             {
-                
+                dgrDangKy.ItemsSource = db.CIMASTs.ToList();
             }
-
         }
 
-        private void btnFirst_Click(object sender, RoutedEventArgs e)
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnUsed_Click(object sender, RoutedEventArgs e)
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSua_Click(object sender, RoutedEventArgs e)
         {
 
         }

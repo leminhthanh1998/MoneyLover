@@ -11,32 +11,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MoneyLover
+namespace MoneyLover.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ThemSTK.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ThemSTK : Window
     {
-        public MainWindow()
+        public ThemSTK()
         {
             InitializeComponent();
+        }
+
+        private void btnSave_KeyDown(object sender, KeyEventArgs e)
+        {
             using (var db = new MoneyEntity())
             {
-                
+               
             }
-
         }
 
-        private void btnFirst_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnUsed_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
 
         }

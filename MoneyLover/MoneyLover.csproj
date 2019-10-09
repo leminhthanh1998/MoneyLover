@@ -72,6 +72,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Migrations\201910092227018_add1.cs" />
+    <Compile Include="Migrations\201910092227018_add1.designer.cs">
+      <DependentUpon>201910092227018_add1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DanhSachSTK.xaml.cs">
+      <DependentUpon>DanhSachSTK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThemSTK.xaml.cs">
+      <DependentUpon>ThemSTK.xaml</DependentUpon>
+    </Compile>
     <Page Include="Chu_Y.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,8 +108,39 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\DanhSachSTK.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThemSTK.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201910092123179_first.cs" />
+    <Compile Include="Migrations\201910092123179_first.designer.cs">
+      <DependentUpon>201910092123179_first.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910092144180_add.cs" />
+    <Compile Include="Migrations\201910092144180_add.designer.cs">
+      <DependentUpon>201910092144180_add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AllCode.cs" />
+    <Compile Include="Models\BRANCH.cs" />
+    <Compile Include="Models\CALENDAR.cs" />
+    <Compile Include="Models\CFIMAGE.cs" />
+    <Compile Include="Models\CFMAST.cs" />
+    <Compile Include="Models\CIINTTRAN.cs" />
+    <Compile Include="Models\CIMAST.cs" />
+    <Compile Include="Models\CIPRODUCT.cs" />
+    <Compile Include="Models\CITRAN.cs" />
+    <Compile Include="Models\DEPARTMENTE.cs" />
+    <Compile Include="Models\TLLOGS.cs" />
+    <Compile Include="Models\TLPROFILE.cs" />
+    <Compile Include="Models\MoneyEntity.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -113,6 +154,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201910092123179_first.resx">
+      <DependentUpon>201910092123179_first.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910092144180_add.resx">
+      <DependentUpon>201910092144180_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910092227018_add1.resx">
+      <DependentUpon>201910092227018_add1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

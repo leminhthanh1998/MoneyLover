@@ -30,8 +30,10 @@
                    VerticalAlignment="Center"></TextBlock>
 
         <TextBox
+            x:Name="txbEmail"
             Grid.Row="1"
             FontSize="10"
+            Margin="10 0"
             Foreground="Green"
             VerticalAlignment="Center"
             
@@ -44,7 +46,9 @@
         </TextBox>
 
         <PasswordBox
-            x:Name="FloatingPasswordBox"
+            Name="txbPass"
+            Margin="10 0"
+         
             Grid.Row="2"
             materialDesign:HintAssist.Hint="Mật khẩu"
             FontSize="11"
@@ -53,14 +57,18 @@
         <Button Content="Đăng Ký" Width="280" Grid.Row="3" Height="30"
                 Background="Green" FontSize="11" FontFamily="Arial"
                 FontWeight="Bold"
+                    Name="btnDK"
+                Click="btnDK_Click"
                 >
             
         </Button>
-        <Button Content="Đăng Ký" Width="200" Grid.Row="4" Height="30"
+        <Button Content="Đăng Nhap" Width="200" Grid.Row="4" Height="30"
                 BorderBrush="#eeeeee"  BorderThickness="0" 
                 Foreground="Green"
                 Background="#eeeeee" FontSize="11" FontFamily="Arial"
                 FontWeight="Bold"
+                Name="btnDN"
+                Click="btnDN_Click"
                 >
 
         </Button>
