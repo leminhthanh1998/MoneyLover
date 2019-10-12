@@ -16,46 +16,58 @@ using System.Windows.Shapes;
 namespace MoneyLover.Views
 {
     /// <summary>
-    /// Interaction logic for ThemSTK.xaml
+    /// Interaction logic for SuaSTK.xaml
     /// </summary>
-    public partial class ThemSTK : Window
+    public partial class SuaSTK : Window
     {
-        public ThemSTK()
+        public SuaSTK()
         {
             InitializeComponent();
-
-        }
-
-        private void btnSave_KeyDown(object sender, KeyEventArgs e)
-        {
             using (var db = new MoneyEntity())
             {
-               
+                var stk = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
+                txbSTK.Text = stk.ACCTNO.ToString();
+                txtNganHang.Text = stk.BANK.ToString();
+                txbSotien.Text = stk.DEPOSITAMT.ToString();
+                txbLai.Text = stk.RATE.ToString();
+                txbLaiKTH.Text = stk.NPTERM.ToString();
+                txtNgayGui.Text = stk.FRDATE.ToString();
+                cbKhiDH.Text = stk.KhiDenHan.ToString();
+                cbTraLai.Text = stk.TraLai.ToString();
+                cbKH.Text = stk.TERM.ToString();
             }
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, KeyEventArgs e)
+        {
+          
+        }
+
+        private void btnSave_Click_1(object sender, RoutedEventArgs e)
         {
             ComboBoxItem typeItem = (ComboBoxItem)cbKH.SelectedItem;
             ComboBoxItem typeItem1 = (ComboBoxItem)cbKhiDH.SelectedItem;
             ComboBoxItem typeItem2 = (ComboBoxItem)cbTraLai.SelectedItem;
+
             using (var db = new MoneyEntity())
             {
-                if (DateTime.Parse(txtNgayGui.Text) <= DateTime.Now )
+                MessageBoxResult result = MessageBox.Show("Lưu thay đổi ?", "Thông báo", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
                 { 
-                    if(int.Parse(txbSotien.Text) > 1000000)
+                    if (DateTime.Parse(txtNgayGui.Text) <= DateTime.Now)
+                {
+                    if (int.Parse(txbSotien.Text) > 1000000)
                     {
-                        
-                        CIMAST ci = new CIMAST() { };
+
+                        var ci = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
                         ci.ACCTNO = int.Parse(txbSTK.Text);
                         ci.DEPOSITAMT = double.Parse(txbSotien.Text);
                         ci.RATE = double.Parse(txbLai.Text);
                         ci.BANK = txtNganHang.Text;
                         ci.FRDATE = DateTime.Parse(txtNgayGui.Text);
                         ci.KhiDenHan = typeItem1.Content.ToString();
-                        ci.Balance = ci.DEPOSITAMT;
                         //lãi không kỳ hạn
-                        if (txbLaiKTH.Text == null || txbLaiKTH.Text== "")
+                        if (txbLaiKTH.Text == null || txbLaiKTH.Text == "")
                         {
                             ci.NPTERM = 0.5;
                         }
@@ -64,14 +76,12 @@ namespace MoneyLover.Views
                             ci.NPTERM = double.Parse(txbLaiKTH.Text);
 
 
-                        
+
                         }
                         ci.TERM = int.Parse(typeItem.Tag.ToString());
                         ci.TraLai = typeItem2.Content.ToString();
-
-                        db.CIMASTs.Add(ci);
                         db.SaveChanges();
-                        MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButton.OK);
+                       
                         for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
                         {
 
@@ -88,9 +98,23 @@ namespace MoneyLover.Views
                 }
                 else
                 {
-                    MessageBox.Show("Ngày gửi <= ngày hiện tại","Error", MessageBoxButton.OK);
+                    MessageBox.Show("Ngày gửi <= ngày hiện tại", "Error", MessageBoxButton.OK);
+                }
+                }
+                else if(result == MessageBoxResult.No)
+                {
+                    for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
+                    {
+
+                        if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
+                            App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
+                    }
+                    DanhSachSTK dn = new DanhSachSTK();
+                    dn.ShowDialog();
                 }
             }
         }
     }
 }
+
+        

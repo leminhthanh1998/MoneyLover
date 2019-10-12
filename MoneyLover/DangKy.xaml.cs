@@ -48,6 +48,14 @@ namespace MoneyLover
                         db.users.Add(user);
                         db.SaveChanges();
                         MessageBox.Show("Dang ky thanh cong", "Error", MessageBoxButton.OK);
+                        for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
+                        {
+
+                            if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
+                                App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
+                        }
+                        DangNhap dn = new DangNhap();
+                        dn.ShowDialog();
                     }
                     else
                     {
@@ -61,38 +69,7 @@ namespace MoneyLover
             }
         }
 
-        private void btnDN_Click(object sender, RoutedEventArgs e)
-        {
-            using (var db = new MoneyEntity())
-            {
-
-                var checkemail = db.users.Where(x => x.email == txbEmail.Text).Count();
-                if(checkemail != 0)
-                {
-                    var timemail = db.users.Where(x => x.email == txbEmail.Text).Single();
-                    if (txbEmail.Text ==timemail.email && txbPass.Password.ToString() ==  timemail.pass)
-                    {
-
-                        for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
-                        {
-
-                            if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
-                                App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
-                        }
-                        DanhSachSTK main = new DanhSachSTK();
-                        main.ShowDialog();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Email khong dung hoac chua dang ky", "Error", MessageBoxButton.OK);
-
-                }
-            }
-           
-          
-
-        }
+ 
 
         //check mail
         bool IsValidEmail(string email)

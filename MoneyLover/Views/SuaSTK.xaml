@@ -1,4 +1,4 @@
-﻿<Window x:Class="MoneyLover.Views.ThemSTK"
+﻿<Window x:Class="MoneyLover.Views.SuaSTK"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -18,11 +18,11 @@
                 Padding="32">
                     <TextBlock FontFamily="Times New Roman"
                 TextAlignment="Center" Foreground="Brown"
-                Text="Them so tiet kiem" FontSize="50"></TextBlock>
+                Text="Sửa sổ tiết kiệm" FontSize="50"></TextBlock>
                 </materialDesign:Card>
                 <DockPanel Margin="10 20 0 0">
                     <TextBlock Text="Ma so" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"></TextBlock>
-                    <TextBox Name="txbSTK" materialDesign:HintAssist.Hint="Mã Học Sinh" Style="{StaticResource MaterialDesignFloatingHintTextBox}"   Margin="55 0 140 5"></TextBox>
+                    <TextBox IsReadOnly="True" Name="txbSTK" materialDesign:HintAssist.Hint="Mã Học Sinh" Style="{StaticResource MaterialDesignFloatingHintTextBox}"   Margin="55 0 140 5"></TextBox>
                     <TextBlock Text="Ky Han" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"></TextBlock>
                     <ComboBox
                         SelectedValuePath="Tag"
@@ -54,8 +54,8 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="Ngan hang" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left"/>
                     <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"  x:Name="txtNganHang" Grid.Column="1" FontSize="13" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"  materialDesign:HintAssist.Hint="Tên" 
-                              TextAlignment="Left" Text="{Binding Name}"  >
-                        
+                              TextAlignment="Left"   >
+
                     </TextBox>
 
                     <TextBlock Text="Tra Lai" FontSize="20" Grid.Row="2" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center" Margin="0,4.4,0,0"/>
@@ -63,19 +63,18 @@
                      Margin="5 0 0 0"  materialDesign:HintAssist.Hint="Tra lai" 
                      VerticalAlignment="Center" HorizontalAlignment="Left"
                               Grid.Column="1"
-                             Text="{Binding Address}"  >
+                               >
                         <ComboBoxItem Name="cbTL1">Đầukỳ</ComboBoxItem>
                         <ComboBoxItem Name="cbTL2">Cuối kỳ</ComboBoxItem>
                         <ComboBoxItem Name="cbTL3">Định kỳ hằng tháng</ComboBoxItem>
                     </ComboBox>
                     <TextBlock Text="Ngày gui" FontSize="20" Grid.Row="1" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center"/>
                     <DatePicker Name="txtNgayGui" Grid.Row="1" Grid.Column="1"
+                           
                                 VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0" 
                                 Width="250" SelectedDate="{x:Static sys:DateTime.Now}"
                                 materialDesign:HintAssist.Hint="MM/dd/yyyy"     
-                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" >
-                        
-                    </DatePicker>
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
 
 
                     <TextBlock
@@ -86,7 +85,7 @@
                               Margin="5 0 0 0" 
                               materialDesign:HintAssist.Hint="So tien" 
                               VerticalAlignment="Center" HorizontalAlignment="Left"
-                              Grid.Column="3" TextAlignment="Left" Text="{Binding Address}"  />
+                              Grid.Column="3" TextAlignment="Left" />
                     <!--lai suat-->
                     <TextBlock
                     Text="Lai Suat" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" FontSize="20" ></TextBlock>
@@ -96,7 +95,7 @@
                               Margin="5 0 0 0" 
                               materialDesign:HintAssist.Hint="So tien" 
                               VerticalAlignment="Center" HorizontalAlignment="Left"
-                              Grid.Column="3" TextAlignment="Left" Text="{Binding Address}"  />
+                              Grid.Column="3" TextAlignment="Left" />
                     <!--khong lai suat-->
                     <TextBlock
                     Text="Lai khong thoi han" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontSize="20" ></TextBlock>
@@ -106,7 +105,7 @@
                               Margin="5 0 0 0" 
                               materialDesign:HintAssist.Hint="So tien" 
                               VerticalAlignment="Center" HorizontalAlignment="Left"
-                              Grid.Column="3" TextAlignment="Left" Text="{Binding Address}"  />
+                              Grid.Column="3" TextAlignment="Left"  />
                     <TextBlock
                     Text="Khi den han" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" FontSize="20" ></TextBlock>
                     <ComboBox 
@@ -115,7 +114,7 @@
                               Margin="5 0 0 0" 
                               materialDesign:HintAssist.Hint="So tien" 
                               VerticalAlignment="Center" HorizontalAlignment="Left"
-                              Grid.Column="1" Text="{Binding Address}"  >
+                              Grid.Column="1"  >
                         <ComboBoxItem Name="cb1">Tái tục gốc và lãi</ComboBoxItem>
                         <ComboBoxItem Name="cb2">Tái tục gốc</ComboBoxItem>
                         <ComboBoxItem Name="cb3">Tái tục gốc</ComboBoxItem>
@@ -129,9 +128,9 @@
 
                 <Button Content="Lưu"
                     Name="btnSave" 
-                    Click="btnSave_Click"
+                    Click="btnSave_Click_1"
                     Width="100" 
-                    KeyDown="btnSave_KeyDown"></Button>
+                   ></Button>
 
             </DockPanel>
 

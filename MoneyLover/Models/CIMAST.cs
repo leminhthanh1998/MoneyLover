@@ -13,20 +13,27 @@ namespace MoneyLover.Models
         [Key]
         //ma so
         public int ACCTNO { get; set; }
-        public int CUSID { get; set; }
+      
         //so tien goc
         public double? DEPOSITAMT { get; set; }
         //lai suat nam
         public double RATE { get; set; }
        
-        public double INTEREST { get; set; }
+      
         //ngay mo
         public DateTime FRDATE { get; set; }
-        public DateTime TODATE { get; set; }
-        public int ISBLOCKED { get; set; }
-        public double BLOCKEDAMT { get; set; }
-        public double INCREASEINT { get; set; }
-       
-        public string STATUS { get; set; }
+        
+        //khong ky han
+        public double? NPTERM { get; set; }
+        //ngan hang
+        public string BANK { get; set; }
+        //tra lai la sao nhi
+        public string TraLai { get; set; }
+        //khi den han
+        public string KhiDenHan { get; set; }
+        //ky han
+        public int TERM { get; set; }
+        //số dư hiện có
+        public double? Balance { get; set; }
     }
 }

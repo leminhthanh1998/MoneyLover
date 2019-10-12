@@ -72,12 +72,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DangNhap.xaml.cs">
+      <DependentUpon>DangNhap.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201910092227018_add1.cs" />
     <Compile Include="Migrations\201910092227018_add1.designer.cs">
       <DependentUpon>201910092227018_add1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910111524498_bi.cs" />
+    <Compile Include="Migrations\201910111524498_bi.designer.cs">
+      <DependentUpon>201910111524498_bi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910111550200_add ky han.cs" />
+    <Compile Include="Migrations\201910111550200_add ky han.designer.cs">
+      <DependentUpon>201910111550200_add ky han.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910111608216_sad.cs" />
+    <Compile Include="Migrations\201910111608216_sad.designer.cs">
+      <DependentUpon>201910111608216_sad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910120532226_abc.cs" />
+    <Compile Include="Migrations\201910120532226_abc.designer.cs">
+      <DependentUpon>201910120532226_abc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910120639341_abcd.cs" />
+    <Compile Include="Migrations\201910120639341_abcd.designer.cs">
+      <DependentUpon>201910120639341_abcd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\DanhSachSTK.xaml.cs">
       <DependentUpon>DanhSachSTK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GuiThem.xaml.cs">
+      <DependentUpon>GuiThem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RutTien.xaml.cs">
+      <DependentUpon>RutTien.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SuaSTK.xaml.cs">
+      <DependentUpon>SuaSTK.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ThemSTK.xaml.cs">
       <DependentUpon>ThemSTK.xaml</DependentUpon>
@@ -87,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DangKy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DangNhap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -109,6 +145,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\DanhSachSTK.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GuiThem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RutTien.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SuaSTK.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,6 +211,21 @@
     <EmbeddedResource Include="Migrations\201910092227018_add1.resx">
       <DependentUpon>201910092227018_add1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910111524498_bi.resx">
+      <DependentUpon>201910111524498_bi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910111550200_add ky han.resx">
+      <DependentUpon>201910111550200_add ky han.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910111608216_sad.resx">
+      <DependentUpon>201910111608216_sad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910120532226_abc.resx">
+      <DependentUpon>201910120532226_abc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910120639341_abcd.resx">
+      <DependentUpon>201910120639341_abcd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -181,6 +244,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\conong.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\img\add.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoneyLover"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Title="Chu_Y" Height="280" Width="250">
     <Grid>
@@ -15,18 +16,21 @@
 
         </Grid.RowDefinitions>
         <Image Source="./img/conong.png"></Image>
-        <TextBlock
+        <TextBox
+            x:Name="txbcanhbao"
             Grid.Row="1"
             Margin="10"
             Foreground="Gray"
             FontSize="13"
             TextWrapping="Wrap"
             FontFamily="Arial"
-            Text="Sổ tiết kiếm .... đến hạn ngày ... . Số tiền rút ra trước hạn sẽ được tính theo lại suất không kỳ hạn (xxx%/năm). Bạn có muốn tiếp tục?"></TextBlock>
+            ></TextBox>
 
         <DockPanel Grid.Row="2">
-            <Button Margin="80 0 0 0" Background="White" BorderBrush="White" BorderThickness="0" Foreground="Gray" Content="Không "></Button>
-            <Button Margin="0 0 "  Content="Có " FontWeight="Bold"  Background="White" BorderBrush="White" BorderThickness="0" Foreground="Cyan"></Button>
+            <Button Margin="80 0 0 0" Name="btnNo" Click="btnNo_Click"
+                    Background="White" BorderBrush="Snow" BorderThickness="0" Foreground="Gray" Content="Không "></Button>
+            <Button Margin="0 0 "  Name="btnCo" Click="btnCo_Click"
+                    Content="Có " FontWeight="Bold"  Background="White" BorderBrush="White" BorderThickness="0" Foreground="Cyan"></Button>
         </DockPanel>
     </Grid>
 </Window>

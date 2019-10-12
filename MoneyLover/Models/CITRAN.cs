@@ -12,17 +12,13 @@ namespace MoneyLover.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int AUTOID { get; set; }
-        public DateTime BKDATE { get; set; }
-        public string TLTXCD { get; set; }
-        public string DELID { get; set; }
-        public int NAMT { get; set; }
-        public string TXFIELD { get; set; }
+        //số tài khoản
         public int ACCTNO { get; set; }
-        public string TXNUM { get; set; }
-        public string TRDESC { get; set; }
-        public string TXUPDATE { get; set; }
-
-        public double? BALANCE { get; set; }
-        public DateTime? TXTDATE { get; set; }
+        //ngày rút tiền
+        public DateTime BKDATE { get; set; }
+        //số tiền rút
+        public double? SoTienRut { get; set; }
+        //lãi suất
+        public double? TienLai { get; set; }
     }
 }
