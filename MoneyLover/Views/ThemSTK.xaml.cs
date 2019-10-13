@@ -92,5 +92,17 @@ namespace MoneyLover.Views
                 }
             }
         }
+
+        private void btnHuy_Click(object sender, RoutedEventArgs e)
+        {
+            for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
+            {
+
+                if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
+                    App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
+            }
+            DanhSachSTK dn = new DanhSachSTK();
+            dn.ShowDialog();
+        }
     }
 }

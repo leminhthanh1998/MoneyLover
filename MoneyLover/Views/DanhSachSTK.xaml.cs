@@ -1,6 +1,7 @@
 ﻿using MoneyLover.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,15 +22,50 @@ namespace MoneyLover.Views
     public partial class DanhSachSTK : Window
     {
         public static int? maSTK;
-        public DanhSachSTK()
+        //class CustomerDao
+        //{
+        //    public static ObservableCollection<CIMAST> GetCustomers()
+        //    {
+        //        string sql = @"SELECT * FROM [Customers]";
+        //        return AdoData.ReadList(sql, MakeDataObject);
+        //    }
+        //}
+            public DanhSachSTK()
         {
             InitializeComponent();
             using (var db = new MoneyEntity())
             {
-                dgrDangKy.ItemsSource = db.CIMASTs.ToList();
+
+                ObservableCollection<CIMAST> samdata = new ObservableCollection<CIMAST>();
+                var lst = db.CIMASTs.ToList();
+                // samdata.Add(lst);
+
+                for (int i = 0; i < lst.Count(); i++)
+                {
+                    CIMAST ci = new CIMAST();
+                    ci.ACCTNO = lst[i].ACCTNO;
+                    ci.Balance = lst[i].Balance;
+                    ci.BANK = lst[i].BANK;
+                    ci.DEPOSITAMT = lst[i].DEPOSITAMT;
+                    ci.FRDATE = lst[i].FRDATE;
+                    ci.KhiDenHan = lst[i].KhiDenHan;
+                    ci.NPTERM = lst[i].NPTERM;
+                    ci.RATE = lst[i].RATE;
+                    ci.TERM = lst[i].TERM;
+                    ci.TraLai = lst[i].TraLai;
+                   
+                    samdata.Add(ci);
+                }
+                //ok r
+
+                ListCollectionView collection = new ListCollectionView(samdata);
+                collection.GroupDescriptions.Add(new PropertyGroupDescription("BANK"));
+                dgrDangKy.ItemsSource = collection;
+                
                 var sum = db.CIMASTs.Select(c => c.DEPOSITAMT).Sum();
                 var count = db.CIMASTs.Count();
                 txtSum.Text = sum.ToString() + "(" + count+ "sổ)";
+               
             }
         }
 
@@ -92,6 +128,21 @@ namespace MoneyLover.Views
             {
                 return;
             }
+        }
+
+        private void btnThoat_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DgrDangKy_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:MoneyLover.Views"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+           WindowStyle="None"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="DanhSachSTK" Height="450" Width="900">
-    <Grid >
-      
-        <StackPanel>
+        Title="DanhSachSTK" Height="550" Width="900">
+
+       <StackPanel>
           
             <DockPanel>
                 <Label FontSize="20"
@@ -31,83 +31,107 @@
     
                 </Button>
             </DockPanel>
-            <DockPanel>
-                <TextBlock Text="Tổng tiền" Margin="300 10 0 10" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-                <TextBox Width="200" Name="txtSum" Margin="0 10 200 20" 
+        <DockPanel>
+            <TextBlock Text="Tổng tiền" Margin="300 10 0 10" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <TextBox Width="200" Name="txtSum" Margin="0 10 200 20" 
                          IsReadOnly="True"
                          FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBox>
-            </DockPanel>
-            <TextBox Width="100" Name="txtName" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBox>
-            <ScrollViewer>
+        </DockPanel>
+        <ScrollViewer>
                 
-               <DataGrid FontFamily="Playfair Display " Height="auto" 
+               <!--<DataGrid FontFamily="Playfair Display " Height="auto" 
                   Foreground="Maroon"
                   Background="LightGoldenrodYellow"
                   FontSize="15" Margin="5" IsReadOnly="True"
                   Name="dgrDangKy" AutoGenerateColumns="False"
                   SelectionChanged="dgrDangKy_SelectionChanged"
-                  ColumnWidth="*" >
+                  ColumnWidth="*" >-->
+            <DataGrid x:Name="dgrDangKy" Height="380" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}" />
+                                                 
+                                                </StackPanel>
+                                                <ItemsPresenter />
+                                            </StackPanel>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </DataGrid.GroupStyle>
+                <DataGrid.Columns>
 
-                    <DataGrid.Columns>
-
-                        <DataGridTextColumn Header="Mã số" 
+                    <DataGridTextColumn Header="Mã số" 
                                         Binding="{Binding ACCTNO}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Tổng tiền gốc"
+                    <DataGridTextColumn Header="Tổng tiền gốc"
                                         Binding="{Binding DEPOSITAMT}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Lãi suất năm"
+                    <DataGridTextColumn Header="Lãi suất năm"
                                         Binding="{Binding RATE}"></DataGridTextColumn>
 
-                        <DataGridTextColumn Header="Ngày mở"
+                    <DataGridTextColumn Header="Ngày mở"
                                         Binding="{Binding FRDATE,StringFormat=dd/MM/yyyy}"></DataGridTextColumn>
 
-                        <DataGridTemplateColumn Header="Chi tiết">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="btnSua" Width="150" 
+                    <DataGridTemplateColumn Header="Chi tiết">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnSua" Width="150" 
                                             VerticalAlignment="Center" HorizontalAlignment="Center"  
                                           Click="btnSua_Click">Sửa</Button>
-                                </DataTemplate>
+                            </DataTemplate>
 
-                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
 
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="btnGuiThem" Width="150" 
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnGuiThem" Width="150" 
                                             VerticalAlignment="Center" HorizontalAlignment="Center"
                                           Click="btnGuiThem_Click">Gửi thêm</Button>
-                                </DataTemplate>
+                            </DataTemplate>
 
-                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
 
-                        </DataGridTemplateColumn>
+                    </DataGridTemplateColumn>
 
-                        <DataGridTemplateColumn Header="">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="btnTatToan" Width="150" 
+                    <DataGridTemplateColumn Header="">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnTatToan" Width="150" 
                                             VerticalAlignment="Center" HorizontalAlignment="Center"
                                           Click="btnTatToan_Click">Tất toán</Button>
-                                </DataTemplate>
+                            </DataTemplate>
 
-                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
 
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="btnRut" Width="150"
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnRut" Width="150"
                                             VerticalAlignment="Center" HorizontalAlignment="Center"
                                           Click="btnRut_Click">Rút một phần</Button>
-                                </DataTemplate>
+                            </DataTemplate>
 
-                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
 
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+          
         </ScrollViewer>
+            <Button Content="Thoát"
+                    Name="btnThoat" Click="btnThoat_Click"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"></Button>
         </StackPanel>
-    </Grid>
+   
 </Window>
