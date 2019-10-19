@@ -25,7 +25,8 @@ namespace MoneyLover
         public Chu_Y()
         {
             InitializeComponent();
-            txbcanhbao.Text = "Sổ tiết kiếm " + RutTien.sotk + " đến hạn ngày " + RutTien.han + " số tiền rút ra trước hạn sẽ được tính theo lại suất không kỳ hạn ( " + RutTien.hantruoc + "%/năm). Bạn có muốn tiếp tục?";
+            int ngay = RutTien.kyhan * 30;
+            txbcanhbao.Text = "Sổ tiết kiếm " + RutTien.sotk + " đến hạn ngày " + RutTien.han.AddDays(ngay).ToString("dd/MM/yyyy") + " số tiền rút ra trước hạn sẽ được tính theo lại suất không kỳ hạn ( " + RutTien.hantruoc + "%/năm). Bạn có muốn tiếp tục?";
         }
 
         private void btnNo_Click(object sender, RoutedEventArgs e)
@@ -56,8 +57,8 @@ namespace MoneyLover
                         ACCTNO = stk.ACCTNO,
                         BKDATE = DateTime.Now,
                         SoTienRut = sotien,
-                        TienLai = (sotien * k * (stk.NPTERM / 100)) / 365
-
+                        TienLai = (stk.Balance * RutTien.dem * (stk.NPTERM / 100)) / 365,
+                        DemNgay =  RutTien.dem
                     };
                     db.cITRANs.Add(rutien);
                     stk.Balance = stk.Balance - sotien;

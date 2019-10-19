@@ -22,14 +22,7 @@ namespace MoneyLover.Views
     public partial class DanhSachSTK : Window
     {
         public static int? maSTK;
-        //class CustomerDao
-        //{
-        //    public static ObservableCollection<CIMAST> GetCustomers()
-        //    {
-        //        string sql = @"SELECT * FROM [Customers]";
-        //        return AdoData.ReadList(sql, MakeDataObject);
-        //    }
-        //}
+       
             public DanhSachSTK()
         {
             InitializeComponent();
@@ -38,10 +31,39 @@ namespace MoneyLover.Views
 
                 ObservableCollection<CIMAST> samdata = new ObservableCollection<CIMAST>();
                 var lst = db.CIMASTs.ToList();
+                List<CIMAST> lstTatToan = new List<CIMAST>();
                 // samdata.Add(lst);
 
                 for (int i = 0; i < lst.Count(); i++)
                 {
+                    if (lst[i].STT !="Tất toán")
+                    { 
+                        CIMAST ci = new CIMAST();
+                    ci.ACCTNO = lst[i].ACCTNO;
+                    ci.Balance = lst[i].Balance;
+                    ci.BANK = lst[i].BANK;
+                    ci.DEPOSITAMT = lst[i].DEPOSITAMT;
+                    ci.FRDATE = lst[i].FRDATE;
+                    ci.KhiDenHan = lst[i].KhiDenHan;
+                    ci.NPTERM = lst[i].NPTERM;
+                    ci.RATE = lst[i].RATE;
+                    ci.TERM = lst[i].TERM;
+                    ci.TraLai = lst[i].TraLai;
+
+                    samdata.Add(ci);
+                }
+                }
+                //ok r
+
+                ListCollectionView collection = new ListCollectionView(samdata);
+                collection.GroupDescriptions.Add(new PropertyGroupDescription("BANK"));
+                dgrDangKy.ItemsSource = collection;
+                
+               
+                for (int i = 0; i < lst.Count(); i++)
+                {
+                    if(lst[i].STT=="Tất toán")
+                    { 
                     CIMAST ci = new CIMAST();
                     ci.ACCTNO = lst[i].ACCTNO;
                     ci.Balance = lst[i].Balance;
@@ -53,65 +75,107 @@ namespace MoneyLover.Views
                     ci.RATE = lst[i].RATE;
                     ci.TERM = lst[i].TERM;
                     ci.TraLai = lst[i].TraLai;
-                   
-                    samdata.Add(ci);
+                        lstTatToan.Add(ci);
+                    }
                 }
-                //ok r
 
-                ListCollectionView collection = new ListCollectionView(samdata);
-                collection.GroupDescriptions.Add(new PropertyGroupDescription("BANK"));
-                dgrDangKy.ItemsSource = collection;
-                
-                var sum = db.CIMASTs.Select(c => c.DEPOSITAMT).Sum();
-                var count = db.CIMASTs.Count();
-                txtSum.Text = sum.ToString() + "(" + count+ "sổ)";
-               
+                dgrTattoan.ItemsSource = lstTatToan.OrderByDescending(x=>x.FRDATE);
+
+                var sum = db.CIMASTs.Where(x=>x.STT !="Tất toán").Select(c => c.DEPOSITAMT).Sum();
+                var count = db.CIMASTs.Where(x => x.STT != "Tất toán").Count();
+                var countTT = db.CIMASTs.Where(x => x.STT == "Tất toán").Count();
+                txtSum.Text = sum.ToString() + "(" + count + "sổ)";
+                txtTatToan.Text = "Đã tất toán" + "(" + countTT + "sổ)";
+
             }
         }
 
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
-            {
-
-                if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
-                    App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
-            }
+           
             ThemSTK t = new ThemSTK();
             t.ShowDialog();
         }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
-            {
-
-                if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
-                    App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
-            }
             SuaSTK sua = new SuaSTK();
             sua.ShowDialog();
         }
 
         private void btnTatToan_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("Bạn có muốn tất toán tài khoản", "Thông báo", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                using (var db = new MoneyEntity())
+                {
+                    var stk = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
+                    int ngay = stk.TERM * 30;
+                    if (DateTime.Now >= stk.FRDATE.AddDays(ngay))
+                    {
+                        stk.STT = "Tất toán";
+                        db.SaveChanges();
 
+                        MessageBox.Show("Tất toán thành công", "Thông báo", MessageBoxButton.OK);
+                        for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
+                        {
+
+                            if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
+                                App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
+                        }
+                        DanhSachSTK dn = new DanhSachSTK();
+                        dn.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chưa đến hạn", "Error", MessageBoxButton.OK);
+                    }
+                   
+                }
+            }
         }
 
         private void btnGuiThem_Click(object sender, RoutedEventArgs e)
         {
+            using (var db = new MoneyEntity())
+            {
+                var stk = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
+                if (stk.TERM == 0)
+                {
+                    GuiThem gui = new GuiThem();
+                    gui.ShowDialog();
+                }
+                else 
+                {
+                    if(stk.KhiDenHan== "Tái tục gốc và lãi" || stk.KhiDenHan== "Tái tục gốc")
+                    {
+                        int ngay = stk.TERM * 30;
+                        if (DateTime.Now >= stk.FRDATE.AddDays(ngay))
+                        {
+                            GuiThem gui = new GuiThem();
+                            gui.ShowDialog();
 
+                        }
+                        else
+                        {
+                            MessageBox.Show("Chưa đến hạn gửi", "Error", MessageBoxButton.OK);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sổ này không thể gửi thêm tiền", "Error", MessageBoxButton.OK);
+                    }
+                   
+                }
+            }
+            
         }
 
         private void btnRut_Click(object sender, RoutedEventArgs e)
         {
-            for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
-            {
-
-                if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
-                    App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
-            }
+            
             RutTien rut = new RutTien();
             rut.ShowDialog();
         }

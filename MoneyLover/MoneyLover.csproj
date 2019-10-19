@@ -99,6 +99,23 @@
     <Compile Include="Migrations\201910120639341_abcd.designer.cs">
       <DependentUpon>201910120639341_abcd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910131557329_sn.cs" />
+    <Compile Include="Migrations\201910131557329_sn.designer.cs">
+      <DependentUpon>201910131557329_sn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910181405180_aksd.cs" />
+    <Compile Include="Migrations\201910181405180_aksd.designer.cs">
+      <DependentUpon>201910181405180_aksd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910181423501_aksdl.cs" />
+    <Compile Include="Migrations\201910181423501_aksdl.designer.cs">
+      <DependentUpon>201910181423501_aksdl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910181531334_aksdla.cs" />
+    <Compile Include="Migrations\201910181531334_aksdla.designer.cs">
+      <DependentUpon>201910181531334_aksdla.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GUITHEM.cs" />
     <Compile Include="Views\DanhSachSTK.xaml.cs">
       <DependentUpon>DanhSachSTK.xaml</DependentUpon>
     </Compile>
@@ -225,6 +242,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910120639341_abcd.resx">
       <DependentUpon>201910120639341_abcd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910131557329_sn.resx">
+      <DependentUpon>201910131557329_sn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910181405180_aksd.resx">
+      <DependentUpon>201910181405180_aksd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910181423501_aksdl.resx">
+      <DependentUpon>201910181423501_aksdl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910181531334_aksdla.resx">
+      <DependentUpon>201910181531334_aksdla.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -35,5 +35,7 @@ namespace MoneyLover.Models
         public int TERM { get; set; }
         //số dư hiện có
         public double? Balance { get; set; }
+        //trạng thái
+        public string STT { get; set; }
     }
 }

@@ -20,5 +20,7 @@ namespace MoneyLover.Models
         public double? SoTienRut { get; set; }
         //lãi suất
         public double? TienLai { get; set; }
+        //số ngày được tính lãi
+        public int DemNgay { get; set; }
     }
 }

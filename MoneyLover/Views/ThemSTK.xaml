@@ -119,7 +119,7 @@
                               Grid.Column="1" Text="{Binding Address}"  >
                         <ComboBoxItem Name="cb1">Tái tục gốc và lãi</ComboBoxItem>
                         <ComboBoxItem Name="cb2">Tái tục gốc</ComboBoxItem>
-                        <ComboBoxItem Name="cb3">Tái tục gốc</ComboBoxItem>
+                        <ComboBoxItem Name="cb3">Tất toán</ComboBoxItem>
                     </ComboBox>
 
                 </Grid>

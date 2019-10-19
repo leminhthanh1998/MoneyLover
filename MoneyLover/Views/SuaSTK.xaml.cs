@@ -34,7 +34,27 @@ namespace MoneyLover.Views
                 txtNgayGui.Text = stk.FRDATE.ToString();
                 cbKhiDH.Text = stk.KhiDenHan.ToString();
                 cbTraLai.Text = stk.TraLai.ToString();
-                cbKH.Text = stk.TERM.ToString();
+                if(stk.TERM==0)
+                {
+                    cbKH.Text = "không kỳ hạn";
+                }
+                else if(stk.TERM==12)
+                {
+                    cbKH.Text = "12";
+                }
+                else if (stk.TERM == 1)
+                {
+                    cbKH.Text = "1";
+                }
+                else if (stk.TERM == 6)
+                {
+                    cbKH.Text = "6";
+                }
+                else if (stk.TERM == 3)
+                {
+                    cbKH.Text = "3";
+                }
+
             }
         }
 
