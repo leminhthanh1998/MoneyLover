@@ -76,14 +76,14 @@
                     <DataGridTextColumn Header="Mã số" 
                                         Binding="{Binding ACCTNO}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Tổng tiền gốc"
-                                        Binding="{Binding DEPOSITAMT}"></DataGridTextColumn>
+                                        Binding="{Binding Balance}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Lãi suất năm"
                                         Binding="{Binding RATE}"></DataGridTextColumn>
 
                     <DataGridTextColumn Header="Ngày mở"
                                         Binding="{Binding FRDATE,StringFormat=dd/MM/yyyy}"></DataGridTextColumn>
 
-                    <DataGridTemplateColumn Header="Chi tiết">
+                    <DataGridTemplateColumn Header="Chỉnh sửa">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Name="btnSua" Width="150" 
@@ -145,7 +145,8 @@
          
             <DataGrid x:Name="dgrTattoan" Margin="5"  FontSize="15"
                       IsReadOnly="True"
-                       SelectionChanged="dgrDangKy_SelectionChanged"
+                       SelectionChanged="dgrTattoan_SelectionChanged_1"
+                      ColumnWidth="*"
                       Height="180" AutoGenerateColumns="False" CanUserAddRows="False">
            
                 <DataGrid.Columns>
@@ -160,51 +161,18 @@
                     <DataGridTextColumn Header="Ngày mở"
                                         Binding="{Binding FRDATE,StringFormat=dd/MM/yyyy}"></DataGridTextColumn>
 
-                    <DataGridTemplateColumn Header="Chi tiết">
+                    <DataGridTemplateColumn Header="Xem">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Name="btnSua" Width="150" 
+                                <Button Name="btnXem" Width="150" 
                                             VerticalAlignment="Center" HorizontalAlignment="Center"  
-                                          Click="btnSua_Click">Sửa</Button>
+                                          Click="btnXem_Click">Xem</Button>
                             </DataTemplate>
 
                         </DataGridTemplateColumn.CellTemplate>
 
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Name="btnGuiThem" Width="150" 
-                                            VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Click="btnGuiThem_Click">Gửi thêm</Button>
-                            </DataTemplate>
-
-                        </DataGridTemplateColumn.CellTemplate>
-
-                    </DataGridTemplateColumn>
-
-                    <DataGridTemplateColumn Header="">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Name="btnTatToan" Width="150" 
-                                            VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Click="btnTatToan_Click">Tất toán</Button>
-                            </DataTemplate>
-
-                        </DataGridTemplateColumn.CellTemplate>
-
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Name="btnRut" Width="150"
-                                            VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          Click="btnRut_Click">Rút một phần</Button>
-                            </DataTemplate>
-
-                        </DataGridTemplateColumn.CellTemplate>
-
-                    </DataGridTemplateColumn>
+             
                 </DataGrid.Columns>
             </DataGrid>
 

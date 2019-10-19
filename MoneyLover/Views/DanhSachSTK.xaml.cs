@@ -22,8 +22,9 @@ namespace MoneyLover.Views
     public partial class DanhSachSTK : Window
     {
         public static int? maSTK;
-       
-            public DanhSachSTK()
+        public static int? maSTKTT;
+
+        public DanhSachSTK()
         {
             InitializeComponent();
             using (var db = new MoneyEntity())
@@ -113,8 +114,22 @@ namespace MoneyLover.Views
                 {
                     var stk = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
                     int ngay = stk.TERM * 30;
+                    int daynow = RutTien.thisIsMagic(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                    int day = RutTien.thisIsMagic(stk.FRDATE.Year, stk.FRDATE.Month, stk.FRDATE.Day);
+                    int k = daynow - day;
                     if (DateTime.Now >= stk.FRDATE.AddDays(ngay))
                     {
+                        CITRAN ci = new CITRAN()
+                        {
+                            ACCTNO = stk.ACCTNO,
+                            BKDATE = DateTime.Now,
+                            DemNgay = k,
+                            TienLai = (stk.Balance * (stk.TERM * 30) * (stk.RATE / 100)) / 12 + (stk.Balance * (k - (stk.TERM * 30)) * (stk.NPTERM / 100) / 365),
+                            SoTienRut = stk.Balance,
+                            
+                        };
+                        db.cITRANs.Add(ci);
+                        stk.Balance = 0;
                         stk.STT = "Tất toán";
                         db.SaveChanges();
 
@@ -130,7 +145,7 @@ namespace MoneyLover.Views
                     }
                     else
                     {
-                        MessageBox.Show("Chưa đến hạn", "Error", MessageBoxButton.OK);
+                        MessageBox.Show("Chưa đến hạn tất toán", "Error", MessageBoxButton.OK);
                     }
                    
                 }
@@ -207,6 +222,31 @@ namespace MoneyLover.Views
         private void DgrDangKy_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void btnXem_Click(object sender, RoutedEventArgs e)
+        {
+            ChiTietSTK t = new ChiTietSTK();
+            t.ShowDialog();
+        }
+
+        private void dgrTattoan_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
+        }
+
+        private void dgrTattoan_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            int? stktt = (dgrTattoan.SelectedItem as CIMAST).ACCTNO;
+            if (stktt != null)
+            {
+                maSTKTT = stktt;
+            }
+
+            else
+            {
+                return;
+            }
         }
     }
 }

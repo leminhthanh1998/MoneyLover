@@ -1,0 +1,69 @@
+﻿<Window x:Class="MoneyLover.Views.ChiTietSTK"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MoneyLover.Views"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+           WindowStyle="None"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="DanhSachSTK" Height="500" Width="800">
+
+    <StackPanel>
+
+        <DockPanel>
+            <Label FontSize="20"
+                   HorizontalAlignment="Center"
+                   >Chi tiết sổ tiết kiệm</Label>
+
+        </DockPanel>
+        <DockPanel >
+            <TextBlock Text="Sổ tiết kiệm:" Margin="300 0 0 10" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <TextBox IsReadOnly="True" Foreground="Red"
+                     Width="200"  Margin="0 10 200 20" 
+                     FontSize="17"
+                     Name="txtTatToan"></TextBox>
+        </DockPanel>
+
+      
+        <ScrollViewer>
+
+            <!--<DataGrid FontFamily="Playfair Display " Height="auto" 
+                  Foreground="Maroon"
+                  Background="LightGoldenrodYellow"
+                  FontSize="15" Margin="5" IsReadOnly="True"
+                  Name="dgrDangKy" AutoGenerateColumns="False"
+                  SelectionChanged="dgrDangKy_SelectionChanged"
+                  ColumnWidth="*" >-->
+
+            <DataGrid x:Name="dgrTattoan" Margin="5"  FontSize="15"
+                      IsReadOnly="True"
+                      Height="250" AutoGenerateColumns="False" CanUserAddRows="False">
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="Mã số" 
+                                        Binding="{Binding ACCTNO}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tổng tiền gốc"
+                                        Binding="{Binding Balance}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Lãi suất năm"
+                                        Binding="{Binding RATE}"></DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Ngày mở"
+                                        Binding="{Binding FRDATE,StringFormat=dd/MM/yyyy}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tình trạng"
+                                        Binding="{Binding STT}"></DataGridTextColumn>
+                   
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </ScrollViewer>
+        <Button Content="Thoát" Margin="5"
+                    Name="btnThoat" Click="btnThoat_Click"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"></Button>
+    </StackPanel>
+
+</Window>
+

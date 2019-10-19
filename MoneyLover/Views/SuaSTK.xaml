@@ -111,13 +111,13 @@
                     Text="Khi den han" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" FontSize="20" ></TextBlock>
                     <ComboBox 
                               x:Name="cbKhiDH" FontSize="13" Width="600" Grid.Row="3" 
-                              
+                               SelectedValuePath="Tag"
                               Margin="5 0 0 0" 
                               materialDesign:HintAssist.Hint="So tien" 
                               VerticalAlignment="Center" HorizontalAlignment="Left"
                               Grid.Column="1"  >
                         <ComboBoxItem Name="cb1">Tái tục gốc và lãi</ComboBoxItem>
-                        <ComboBoxItem Name="cb2">Tái tục gốc</ComboBoxItem>
+                        <ComboBoxItem Tag="0">Tái tục gốc</ComboBoxItem>
                         <ComboBoxItem Name="cb3">Tất toán</ComboBoxItem>
                     </ComboBox>
 

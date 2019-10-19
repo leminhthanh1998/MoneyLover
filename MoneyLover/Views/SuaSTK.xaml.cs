@@ -33,7 +33,17 @@ namespace MoneyLover.Views
                 txbLaiKTH.Text = stk.NPTERM.ToString();
                 txtNgayGui.Text = stk.FRDATE.ToString();
                 cbKhiDH.Text = stk.KhiDenHan.ToString();
+              
+                if (stk.KhiDenHan.ToString() == "Tái tục gốc")
+                {
+                    cbKhiDH.SelectedIndex = 1;
+                }
+                else
+                {
+                    cbKhiDH.Text = stk.KhiDenHan.ToString();
+                }
                 cbTraLai.Text = stk.TraLai.ToString();
+              
                 if(stk.TERM==0)
                 {
                     cbKH.Text = "không kỳ hạn";
@@ -123,14 +133,7 @@ namespace MoneyLover.Views
                 }
                 else if(result == MessageBoxResult.No)
                 {
-                    for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
-                    {
-
-                        if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
-                            App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
-                    }
-                    DanhSachSTK dn = new DanhSachSTK();
-                    dn.ShowDialog();
+                    Close();
                 }
             }
         }

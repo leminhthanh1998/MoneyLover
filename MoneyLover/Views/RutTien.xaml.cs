@@ -201,7 +201,7 @@ namespace MoneyLover.Views
         }
 
         //tinh ngay rut tien
-        public int thisIsMagic(int year, int month, int day)
+        public static int thisIsMagic(int year, int month, int day)
         {
             if (month < 3)
             {
@@ -213,14 +213,7 @@ namespace MoneyLover.Views
 
         private void btnHuy_Click(object sender, RoutedEventArgs e)
         {
-            for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
-            {
-
-                if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
-                    App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
-            }
-            DanhSachSTK ds = new DanhSachSTK();
-            ds.ShowDialog();
+            Close();
         }
     }
 }
