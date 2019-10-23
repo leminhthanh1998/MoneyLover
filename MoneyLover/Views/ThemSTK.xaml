@@ -8,12 +8,13 @@
            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowStyle="None"
+        ResizeMode="NoResize" 
              WindowStartupLocation="CenterScreen"
         Title="ThemSTK" Height="650" Width="800">
     <Grid>
         <Grid>
             <StackPanel>
-                <materialDesign:Card Height="120" Background="Cornsilk"
+                <materialDesign:Card Height="120"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3"
                 materialDesign:ShadowAssist.ShadowEdges="Top" 
                 Padding="32">
@@ -22,12 +23,12 @@
                 Text="Them so tiet kiem" FontSize="50"></TextBlock>
                 </materialDesign:Card>
                 <DockPanel Margin="10 20 0 0">
-                    <TextBlock Text="Ma so" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"></TextBlock>
-                    <TextBox Name="txbSTK" materialDesign:HintAssist.Hint="Mã Học Sinh" Style="{StaticResource MaterialDesignFloatingHintTextBox}"   Margin="55 0 140 5"></TextBox>
-                    <TextBlock Text="Ky Han" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"></TextBlock>
+                  
+                    <TextBlock Text="Ky Han" Width="100" HorizontalAlignment="Left"
+                               VerticalAlignment="Center" FontSize="20"></TextBlock>
                     <ComboBox
                         SelectedValuePath="Tag"
-                        Name="cbKH" materialDesign:HintAssist.Hint="Ky Han"   Margin="100 0 100 5">
+                        Name="cbKH" materialDesign:HintAssist.Hint="Ky Han"   Margin="60 0 430 5">
                         <ComboBoxItem Tag="1">1</ComboBoxItem>
                         <ComboBoxItem Tag="3">3</ComboBoxItem>
                         <ComboBoxItem Tag="6">6</ComboBoxItem>
@@ -61,7 +62,7 @@
 
                     <TextBlock Text="Tra Lai" FontSize="20" Grid.Row="2" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center" Margin="0,4.4,0,0"/>
                     <ComboBox  x:Name="cbTraLai" FontSize="13" Width="600" Grid.Row="2" 
-                     Margin="5 0 0 0"  materialDesign:HintAssist.Hint="Tra lai" 
+                     Margin="5 0 0 0"  materialDesign:HintAssist.Hint="Trả lãi" 
                      VerticalAlignment="Center" HorizontalAlignment="Left"
                               Grid.Column="1"
                              Text="{Binding Address}"  >
@@ -83,9 +84,9 @@
                     Text="So tien" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontSize="20" ></TextBlock>
                     <TextBox  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                               x:Name="txbSotien" FontSize="13" Width="600" Grid.Row="1" 
-                            
+                             
                               Margin="5 0 0 0" 
-                              materialDesign:HintAssist.Hint="So tien" 
+                              materialDesign:HintAssist.Hint="Ví dụ: 1000000" 
                               VerticalAlignment="Center" HorizontalAlignment="Left"
                               Grid.Column="3" TextAlignment="Left" Text="{Binding Address}"  />
                     <!--lai suat-->
@@ -93,9 +94,9 @@
                     Text="Lai Suat" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" FontSize="20" ></TextBlock>
                     <TextBox  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                               x:Name="txbLai" FontSize="13" Width="600" Grid.Row="0" 
-                            
+                             
                               Margin="5 0 0 0" 
-                              materialDesign:HintAssist.Hint="So tien" 
+                              materialDesign:HintAssist.Hint="Ví dụ: 5.5" 
                               VerticalAlignment="Center" HorizontalAlignment="Left"
                               Grid.Column="3" TextAlignment="Left" Text="{Binding Address}"  />
                     <!--khong lai suat-->
@@ -105,7 +106,7 @@
                               x:Name="txbLaiKTH" FontSize="13" Width="600" Grid.Row="2" 
                             
                               Margin="5 0 0 0" 
-                              materialDesign:HintAssist.Hint="So tien" 
+                              materialDesign:HintAssist.Hint="0.5" 
                               VerticalAlignment="Center" HorizontalAlignment="Left"
                               Grid.Column="3" TextAlignment="Left" Text="{Binding Address}"  />
                     <TextBlock
@@ -114,7 +115,7 @@
                               x:Name="cbKhiDH" FontSize="13" Width="600" Grid.Row="3" 
                               
                               Margin="5 0 0 0" 
-                              materialDesign:HintAssist.Hint="So tien" 
+                              materialDesign:HintAssist.Hint="Khi đến hạn" 
                               VerticalAlignment="Center" HorizontalAlignment="Left"
                               Grid.Column="1" Text="{Binding Address}"  >
                         <ComboBoxItem Name="cb1">Tái tục gốc và lãi</ComboBoxItem>
@@ -135,7 +136,8 @@
                     Width="100" 
                     KeyDown="btnSave_KeyDown"></Button>
                 <Button Content="Hủy"
-                    Name="btnHuy" 
+                    Name="btnHuy" Background="White"  
+                    Foreground="Gray"
                     Click="btnHuy_Click"
                     Width="100" 
                    ></Button>

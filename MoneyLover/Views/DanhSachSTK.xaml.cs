@@ -164,24 +164,7 @@ namespace MoneyLover.Views
                 }
                 else 
                 {
-                    if(stk.KhiDenHan== "Tái tục gốc và lãi" || stk.KhiDenHan== "Tái tục gốc")
-                    {
-                        int ngay = stk.TERM * 30;
-                        if (DateTime.Now >= stk.FRDATE.AddDays(ngay))
-                        {
-                            GuiThem gui = new GuiThem();
-                            gui.ShowDialog();
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("Chưa đến hạn gửi", "Error", MessageBoxButton.OK);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Sổ này không thể gửi thêm tiền", "Error", MessageBoxButton.OK);
-                    }
+                    TatToan();
                    
                 }
             }
@@ -246,6 +229,32 @@ namespace MoneyLover.Views
             else
             {
                 return;
+            }
+        }
+
+        void TatToan()
+        {
+            using (var db = new MoneyEntity())
+            {
+                var stk = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
+                if (stk.KhiDenHan == "Tái tục gốc và lãi" || stk.KhiDenHan == "Tái tục gốc")
+                {
+                    int ngay = stk.TERM * 30;
+                    if (DateTime.Now >= stk.FRDATE.AddDays(ngay))
+                    {
+                        GuiThem gui = new GuiThem();
+                        gui.ShowDialog();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chưa đến hạn gửi", "Error", MessageBoxButton.OK);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sổ này không thể gửi thêm tiền", "Error", MessageBoxButton.OK);
+                }
             }
         }
     }

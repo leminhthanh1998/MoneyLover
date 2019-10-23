@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:MoneyLover"
            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        WindowStyle="None"
+         ResizeMode="NoResize" 
+        WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="500" Width="330">
     <Grid Background="#db5c0f">

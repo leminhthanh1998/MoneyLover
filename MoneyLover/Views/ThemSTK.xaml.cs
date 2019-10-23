@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,7 +31,7 @@ namespace MoneyLover.Views
         {
             using (var db = new MoneyEntity())
             {
-               
+
             }
         }
 
@@ -41,54 +42,58 @@ namespace MoneyLover.Views
             ComboBoxItem typeItem2 = (ComboBoxItem)cbTraLai.SelectedItem;
             using (var db = new MoneyEntity())
             {
-                if (DateTime.Parse(txtNgayGui.Text) <= DateTime.Now )
-                { 
-                    if(int.Parse(txbSotien.Text) > 1000000)
-                    {
-                        
-                        CIMAST ci = new CIMAST() { };
-                        ci.ACCTNO = int.Parse(txbSTK.Text);
-                        ci.DEPOSITAMT = double.Parse(txbSotien.Text);
-                        ci.RATE = double.Parse(txbLai.Text);
-                        ci.BANK = txtNganHang.Text;
-                        ci.FRDATE = DateTime.Parse(txtNgayGui.Text);
-                        ci.KhiDenHan = typeItem1.Content.ToString();
-                        ci.Balance = ci.DEPOSITAMT;
-                        //lãi không kỳ hạn
-                        if (txbLaiKTH.Text == null || txbLaiKTH.Text== "")
+                if (DateTime.Parse(txtNgayGui.Text) <= DateTime.Now)
+                {
+                    if (int.TryParse(txbSotien.Text, out int sotien))
+                        if (sotien > 1000000)
                         {
-                            ci.NPTERM = 0.5;
+
+                            CIMAST ci = new CIMAST() { };
+                            ci.DEPOSITAMT = double.Parse(txbSotien.Text);
+                            ci.RATE = double.Parse(txbLai.Text);
+                            ci.BANK = txtNganHang.Text;
+                            ci.FRDATE = DateTime.Parse(txtNgayGui.Text);
+                            ci.KhiDenHan = typeItem1.Content.ToString();
+                            ci.Balance = ci.DEPOSITAMT;
+                            //lãi không kỳ hạn
+                            if (txbLaiKTH.Text == null || txbLaiKTH.Text == "")
+                            {
+                                ci.NPTERM = 0.5;
+                            }
+                            else
+                            {
+                                ci.NPTERM = double.Parse(txbLaiKTH.Text);
+
+
+
+                            }
+                            ci.TERM = int.Parse(typeItem.Tag.ToString());
+                            ci.TraLai = typeItem2.Content.ToString();
+
+                            db.CIMASTs.Add(ci);
+                            db.SaveChanges();
+                            MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButton.OK);
+                            for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
+                            {
+
+                                if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
+                                    App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
+                            }
+                            DanhSachSTK dn = new DanhSachSTK();
+                            dn.ShowDialog();
                         }
                         else
                         {
-                            ci.NPTERM = double.Parse(txbLaiKTH.Text);
-
-
-                        
+                            MessageBox.Show("Số tiền >= 1.000.000", "Error", MessageBoxButton.OK);
                         }
-                        ci.TERM = int.Parse(typeItem.Tag.ToString());
-                        ci.TraLai = typeItem2.Content.ToString();
-
-                        db.CIMASTs.Add(ci);
-                        db.SaveChanges();
-                        MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButton.OK);
-                        for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
-                        {
-
-                            if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
-                                App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
-                        }
-                        DanhSachSTK dn = new DanhSachSTK();
-                        dn.ShowDialog();
-                    }
                     else
                     {
-                        MessageBox.Show("Số tiền >= 1.000.000", "Error", MessageBoxButton.OK);
+                        MessageBox.Show("Vui lòng nhập số", "Error", MessageBoxButton.OK);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Ngày gửi <= ngày hiện tại","Error", MessageBoxButton.OK);
+                    MessageBox.Show("Ngày gửi <= ngày hiện tại", "Error", MessageBoxButton.OK);
                 }
             }
         }
@@ -103,6 +108,11 @@ namespace MoneyLover.Views
             }
             DanhSachSTK dn = new DanhSachSTK();
             dn.ShowDialog();
+        }
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

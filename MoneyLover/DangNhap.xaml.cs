@@ -117,6 +117,55 @@ namespace MoneyLover
             return false;
         }
 
+        private void txbPass_KeyDown(object sender, KeyEventArgs e)
+        {
+           
+        }
+
+        private void txbPass_KeyUp(object sender, KeyEventArgs e)
+        {
+           
+        }
+
+        private void txbPass_MouseLeave(object sender, MouseEventArgs e)
+        {
+           
+        }
+
+        private void txbPass_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (txbPass.Password.Length > 0)
+                ImgShowHide.Visibility = Visibility.Visible;
+            else
+                ImgShowHide.Visibility = Visibility.Hidden;
+        }
+
+        private void ImgShowHide_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            txtVisiblePasswordbox.Visibility = Visibility.Hidden;
+            txbPass.Visibility = Visibility.Visible;
+            txbPass.Focus();
+        }
+
+        private void ImgShowHide_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
+            txtVisiblePasswordbox.Visibility = Visibility.Visible;
+            txbPass.Visibility = Visibility.Hidden;
+            txtVisiblePasswordbox.Text = txbPass.Password;
+        }
+
+        private void ImgShowHide_MouseLeave(object sender, MouseEventArgs e)
+        {
+            txtVisiblePasswordbox.Visibility = Visibility.Hidden;
+            txbPass.Visibility = Visibility.Visible;
+            txbPass.Focus();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+           // ImgShowHide.Source = new BitmapImage(new Uri("pack://application:,,,/AssemblyName;component/img/Hide.jpg", UriKind.Relative));
+        }
     }
 }
 

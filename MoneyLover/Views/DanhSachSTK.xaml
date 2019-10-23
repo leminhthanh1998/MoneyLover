@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:MoneyLover.Views"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-           WindowStyle="None"
-         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="DanhSachSTK" Height="670" Width="900">
+        ResizeMode="NoResize" 
+        WindowStyle="SingleBorderWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Danh sách sổ tiết kiệm" Height="670" Width="900">
 
        <StackPanel>
           
@@ -60,7 +61,8 @@
                                             <StackPanel>
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock Text="{Binding Name}" />
-                                                 
+                                                    <TextBox x:Name="txbSumBank"></TextBox>
+                                                    <TextBlock Text="{Binding ItemCount, StringFormat=Count: {0}}" Margin="30,0,0,0" />
                                                 </StackPanel>
                                                 <ItemsPresenter />
                                             </StackPanel>
@@ -177,9 +179,9 @@
             </DataGrid>
 
         </ScrollViewer>
-        <Button Content="Thoát" Margin="5"
+        <!--<Button Content="Thoát" Margin="5"
                     Name="btnThoat" Click="btnThoat_Click"
-                    HorizontalAlignment="Center" VerticalAlignment="Bottom"></Button>
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"></Button>-->
         </StackPanel>
    
 </Window>

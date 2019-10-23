@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoneyLover"
         mc:Ignorable="d"
+         ResizeMode="NoResize" 
               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         WindowStyle="None"
+        Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
         Title="Đăng Ký" Height="180" Width="300">
     <Grid Background="#eeeeee">
@@ -45,7 +47,7 @@
 
         </TextBox>
 
-        <PasswordBox
+        <!--<PasswordBox
             Name="txbPass"
             Margin="10 0"
          
@@ -53,7 +55,31 @@
             materialDesign:HintAssist.Hint="Mật khẩu"
             FontSize="11"
             Foreground="Green"
-            VerticalAlignment="Center" />
+            VerticalAlignment="Center" />-->
+        <TextBox Height="40"   Margin="10 0"  Grid.Row="2" FontSize="20" Padding="5,2,47,0" Name="txtVisiblePasswordbox" 
+                 />
+
+        <DockPanel  Grid.Row="2">
+            <PasswordBox Height="40"  Name="txbPass"
+                     Margin="10 0 0 4"   materialDesign:HintAssist.Hint="Mật khẩu"
+                    
+                     FontSize="11" KeyDown="txbPass_KeyDown"
+                     KeyUp="txbPass_KeyUp"
+                     MouseLeave="txbPass_MouseLeave"
+                     Foreground="Green"
+                     HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" 
+                     PasswordChanged="txbPass_PasswordChanged"/>
+            <Image Height="20" 
+                   HorizontalAlignment="Center" Name="ImgShowHide"
+               Stretch="Fill" VerticalAlignment="Center" 
+               Width="20" Margin="10 0 0 4" 
+               MouseLeave="ImgShowHide_MouseLeave" 
+               Source="./img/Hide.jpg"
+               PreviewMouseDown="ImgShowHide_PreviewMouseDown" 
+               PreviewMouseUp="ImgShowHide_PreviewMouseUp"/>
+
+        </DockPanel>
+        
         <Button Content="Đăng Ký" Width="280" Grid.Row="3" Height="30"
                 Background="Green" FontSize="11" FontFamily="Arial"
                 FontWeight="Bold"
@@ -62,7 +88,7 @@
                 >
 
         </Button>
-        <Button Content="Đăng Nhap" Width="200" Grid.Row="4" Height="30"
+        <Button Content="Đăng Nhập" Grid.Row="4" Height="30"
                 BorderBrush="#eeeeee"  BorderThickness="0" 
                 Foreground="Green"
                 Background="#eeeeee" FontSize="11" FontFamily="Arial"
