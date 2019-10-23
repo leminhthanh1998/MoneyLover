@@ -10,7 +10,7 @@
         WindowStyle="None"
         Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
-        Title="Đăng Ký" Height="180" Width="300">
+        Title="Đăng Ký" Height="200" Width="300">
     <Grid Background="#eeeeee">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -38,8 +38,9 @@
             Margin="10 0"
             Foreground="Green"
             VerticalAlignment="Center"
-            
+            materialDesign:TextFieldAssist.UnderlineBrush="Green"
             materialDesign:HintAssist.Hint="Email"
+            materialDesign:HintAssist.Foreground="Green"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
             
             
@@ -56,37 +57,38 @@
             FontSize="11"
             Foreground="Green"
             VerticalAlignment="Center" />-->
-        <TextBox Height="40"   Margin="10 0"  Grid.Row="2" FontSize="20" Padding="5,2,47,0" Name="txtVisiblePasswordbox" 
+        <TextBox Height="40"   Margin="10 0"   Foreground="Green" Grid.Row="2" FontSize="11" Padding="5,2,47,0" Name="txtVisiblePasswordbox" 
                  />
 
         <DockPanel  Grid.Row="2">
             <PasswordBox Height="40"  Name="txbPass"
-                     Margin="10 0 0 4"   materialDesign:HintAssist.Hint="Mật khẩu"
-                    
+                     Margin="10 0"   materialDesign:HintAssist.Hint="Mật khẩu"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Green"
+                     materialDesign:HintAssist.Foreground="Green"
+                     Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                      FontSize="11" KeyDown="txbPass_KeyDown"
                      KeyUp="txbPass_KeyUp"
                      MouseLeave="txbPass_MouseLeave"
                      Foreground="Green"
-                     HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" 
+                     HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="250" 
                      PasswordChanged="txbPass_PasswordChanged"/>
-            <Image Height="20" 
+            <Image Height="10" 
                    HorizontalAlignment="Center" Name="ImgShowHide"
                Stretch="Fill" VerticalAlignment="Center" 
-               Width="20" Margin="10 0 0 4" 
+               Width="10" Margin="0 0 0 0"          
                MouseLeave="ImgShowHide_MouseLeave" 
                Source="./img/Hide.jpg"
                PreviewMouseDown="ImgShowHide_PreviewMouseDown" 
                PreviewMouseUp="ImgShowHide_PreviewMouseUp"/>
 
         </DockPanel>
-        
-        <Button Content="Đăng Ký" Width="280" Grid.Row="3" Height="30"
+
+        <Button Content="Đăng Ký"  Grid.Row="3" Height="30"
                 Background="Green" FontSize="11" FontFamily="Arial"
                 FontWeight="Bold"
                     Name="btnDK"
                 Click="btnDK_Click"
                 >
-
         </Button>
         <Button Content="Đăng Nhập" Grid.Row="4" Height="30"
                 BorderBrush="#eeeeee"  BorderThickness="0" 

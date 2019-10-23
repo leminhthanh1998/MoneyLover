@@ -9,7 +9,7 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Title="Đăng Ký" Height="180" Width="300">
+        Title="Đăng Ký" Height="200" Width="300">
     <Grid Background="#eeeeee">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -39,9 +39,9 @@
             VerticalAlignment="Center"
             
             materialDesign:HintAssist.Hint="Email"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-            
-            
+            materialDesign:TextFieldAssist.UnderlineBrush="Green"
+            materialDesign:HintAssist.Foreground="Green"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
             >
 
         </TextBox>
@@ -52,6 +52,9 @@
          
             Grid.Row="2"
             materialDesign:HintAssist.Hint="Mật khẩu"
+            materialDesign:TextFieldAssist.UnderlineBrush="Green"
+                     materialDesign:HintAssist.Foreground="Green"
+                     Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
             FontSize="11"
             Foreground="Green"
             VerticalAlignment="Center" />
@@ -63,6 +66,16 @@
                 >
             
         </Button>
-      
+        <Button Content="Hủy" Grid.Row="4" Height="30"
+                Background="#eeeeee" FontSize="11" FontFamily="Arial"
+                FontWeight="Bold" BorderThickness="0" 
+                Name="btnHuy"
+                Foreground="Gray"
+                Click="btnHuy_Click"
+                >
+
+        </Button>
+
+
     </Grid>
 </Window>

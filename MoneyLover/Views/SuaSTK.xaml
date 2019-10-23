@@ -14,7 +14,7 @@
     <Grid>
         <Grid>
             <StackPanel>
-                <materialDesign:Card Height="120" Background="Cornsilk"
+                <materialDesign:Card Height="120"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3"
                 materialDesign:ShadowAssist.ShadowEdges="Top" 
                 Padding="32">
@@ -23,9 +23,9 @@
                 Text="Sửa sổ tiết kiệm" FontSize="50"></TextBlock>
                 </materialDesign:Card>
                 <DockPanel Margin="10 20 0 0">
-                    <TextBlock Text="Ma so" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"></TextBlock>
-                    <TextBox IsReadOnly="True" Name="txbSTK" materialDesign:HintAssist.Hint="Mã Học Sinh" Style="{StaticResource MaterialDesignFloatingHintTextBox}"   Margin="55 0 140 5"></TextBox>
-                    <TextBlock Text="Ky Han" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"></TextBlock>
+                    <TextBlock Text="Mã sổ" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"></TextBlock>
+                    <TextBox IsReadOnly="True" Name="txbSTK" materialDesign:HintAssist.Hint="Mã sổ" Style="{StaticResource MaterialDesignFloatingHintTextBox}"   Margin="55 0 140 5"></TextBox>
+                    <TextBlock Text="Kỳ hạn" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"></TextBlock>
                     <ComboBox
                         SelectedValuePath="Tag"
                         Name="cbKH" materialDesign:HintAssist.Hint="Ky Han"   Margin="100 0 100 5">
@@ -54,13 +54,13 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Ngan hang" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left"/>
+                    <TextBlock Text="Ngân hàng" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left"/>
                     <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"  x:Name="txtNganHang" Grid.Column="1" FontSize="13" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"  materialDesign:HintAssist.Hint="Tên" 
                               TextAlignment="Left"   >
 
                     </TextBox>
 
-                    <TextBlock Text="Tra Lai" FontSize="20" Grid.Row="2" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center" Margin="0,4.4,0,0"/>
+                    <TextBlock Text="Trả lãi" FontSize="20" Grid.Row="2" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center" Margin="0,4.4,0,0"/>
                     <ComboBox  x:Name="cbTraLai" FontSize="13" Width="600" Grid.Row="2" 
                      Margin="5 0 0 0"  materialDesign:HintAssist.Hint="Tra lai" 
                      VerticalAlignment="Center" HorizontalAlignment="Left"
@@ -70,7 +70,7 @@
                         <ComboBoxItem Name="cbTL2">Cuối kỳ</ComboBoxItem>
                         <ComboBoxItem Name="cbTL3">Định kỳ hằng tháng</ComboBoxItem>
                     </ComboBox>
-                    <TextBlock Text="Ngày gui" FontSize="20" Grid.Row="1" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center"/>
+                    <TextBlock Text="Ngày gửi" FontSize="20" Grid.Row="1" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center"/>
                     <DatePicker Name="txtNgayGui" Grid.Row="1" Grid.Column="1"
                            
                                 VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0" 
@@ -80,7 +80,7 @@
 
 
                     <TextBlock
-                    Text="So tien" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontSize="20" ></TextBlock>
+                    Text="Số tiền" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontSize="20" ></TextBlock>
                     <TextBox  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                               x:Name="txbSotien" FontSize="13" Width="600" Grid.Row="1" 
                               
@@ -90,7 +90,7 @@
                               Grid.Column="3" TextAlignment="Left" />
                     <!--lai suat-->
                     <TextBlock
-                    Text="Lai Suat" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" FontSize="20" ></TextBlock>
+                    Text="Lãi suất" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" FontSize="20" ></TextBlock>
                     <TextBox  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                               x:Name="txbLai" FontSize="13" Width="600" Grid.Row="0" 
                             
@@ -100,21 +100,21 @@
                               Grid.Column="3" TextAlignment="Left" />
                     <!--khong lai suat-->
                     <TextBlock
-                    Text="Lai khong thoi han" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontSize="20" ></TextBlock>
+                    Text="Lãi không thời hạn" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontSize="20" ></TextBlock>
                     <TextBox  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                               x:Name="txbLaiKTH" FontSize="13" Width="600" Grid.Row="2" 
                               
                               Margin="5 0 0 0" 
-                              materialDesign:HintAssist.Hint="So tien" 
+                              materialDesign:HintAssist.Hint="Lãi không thời hạn" 
                               VerticalAlignment="Center" HorizontalAlignment="Left"
                               Grid.Column="3" TextAlignment="Left"  />
                     <TextBlock
-                    Text="Khi den han" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" FontSize="20" ></TextBlock>
+                    Text="Khi đến hạn" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" FontSize="20" ></TextBlock>
                     <ComboBox 
                               x:Name="cbKhiDH" FontSize="13" Width="600" Grid.Row="3" 
                                SelectedValuePath="Tag"
                               Margin="5 0 0 0" 
-                              materialDesign:HintAssist.Hint="So tien" 
+                              materialDesign:HintAssist.Hint="khi đến hạn" 
                               VerticalAlignment="Center" HorizontalAlignment="Left"
                               Grid.Column="1"  >
                         <ComboBoxItem Name="cb1">Tái tục gốc và lãi</ComboBoxItem>

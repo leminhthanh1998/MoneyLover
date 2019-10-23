@@ -7,13 +7,24 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" 
-        WindowStyle="SingleBorderWindow"
+        WindowStyle="None"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Danh sách sổ tiết kiệm" Height="670" Width="900">
+        Title="Danh sách sổ tiết kiệm" Height="700" Width="900">
 
        <StackPanel>
+        <Button Background="Black" Name="btnHuy"
+                
+                Foreground="Red" Width="900"
+                        Click="btnThoat_Click"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Stretch"
+                        Margin="0" FontSize="20"
+                        HorizontalContentAlignment="Stretch">
+            <TextBlock TextAlignment="Right">X</TextBlock>
           
-            <DockPanel>
+        </Button>
+
+        <DockPanel>
                 <Label FontSize="20"
                    HorizontalAlignment="Center"
                    Margin="300 10 0 5" 
@@ -137,14 +148,6 @@
         <TextBox IsReadOnly="True" Foreground="Red" Margin="5" FontSize="17" Name="txtTatToan"></TextBox>
         <ScrollViewer>
 
-            <!--<DataGrid FontFamily="Playfair Display " Height="auto" 
-                  Foreground="Maroon"
-                  Background="LightGoldenrodYellow"
-                  FontSize="15" Margin="5" IsReadOnly="True"
-                  Name="dgrDangKy" AutoGenerateColumns="False"
-                  SelectionChanged="dgrDangKy_SelectionChanged"
-                  ColumnWidth="*" >-->
-         
             <DataGrid x:Name="dgrTattoan" Margin="5"  FontSize="15"
                       IsReadOnly="True"
                        SelectionChanged="dgrTattoan_SelectionChanged_1"

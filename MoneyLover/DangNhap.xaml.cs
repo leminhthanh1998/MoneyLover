@@ -56,10 +56,11 @@ namespace MoneyLover
                         stk.ShowDialog();
 
                     }
+                  
                 }
                 else
                 {
-                    MessageBox.Show("Email khong dung hoac chua dang ky", "Error", MessageBoxButton.OK);
+                    MessageBox.Show("Email không đúng hoặc chưa đăng ký", "Error", MessageBoxButton.OK);
 
                 }
             }

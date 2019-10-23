@@ -88,7 +88,7 @@ namespace MoneyLover.Views
                 {
                     if (DateTime.Parse(txtNgayGui.Text) <= DateTime.Now)
                     {
-                        if (int.TryParse(txbSotien.Text, out int sotien))
+                        if (double.TryParse(txbSotien.Text, out double sotien))
                             if (sotien > 1000000)
                             {
 

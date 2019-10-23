@@ -20,17 +20,19 @@ namespace MoneyLover.Views
     /// </summary>
     public partial class RutTien : Window
     {
-        public static int sotk, kyhan,dem;
+        public static int sotk, kyhan, dem;
         public static DateTime han;
         public static double? hantruoc;
         public static double? sotien;
+        public CIMAST stk;
         public RutTien()
         {
             InitializeComponent();
             using (var db = new MoneyEntity())
             {
-                var stk = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
+                stk = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
                 txbSTK.Text = "Số tài khoản: " + stk.ACCTNO + "(số dư hiện tại: " + stk.Balance + ")";
+               
             }
         }
 
@@ -39,11 +41,10 @@ namespace MoneyLover.Views
 
             using (var db = new MoneyEntity())
             {
-                var stk = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
+              //  var stk = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
                 sotk = stk.ACCTNO;
                 han = stk.FRDATE;
-                kyhan = stk.TERM;
-                sotien = double.Parse(txbSoTien.Text);
+                kyhan = stk.TERM;              
                 hantruoc = stk.NPTERM;
 
                 if (txbSoTien.Text == "" || txbSoTien.Text == null)
@@ -53,7 +54,8 @@ namespace MoneyLover.Views
                 else
                 {
                     if (int.Parse(txbSoTien.Text) <= stk.Balance)
-                    {                     
+                    {
+                        sotien = double.Parse(txbSoTien.Text);
                         int daynow = thisIsMagic(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
                         int day = thisIsMagic(stk.FRDATE.Year, stk.FRDATE.Month, stk.FRDATE.Day);
                         int k = daynow - day;
@@ -63,42 +65,7 @@ namespace MoneyLover.Views
                             if (k > 15)
 
                             {
-                                if (stk.DEPOSITAMT == stk.Balance)
-                                {
-                                    CITRAN rutien = new CITRAN()
-                                    {
-                                        ACCTNO = stk.ACCTNO,
-                                        BKDATE = DateTime.Now,
-                                        SoTienRut = double.Parse(txbSoTien.Text),
-                                        TienLai = (stk.Balance * k * (stk.RATE / 100)) / 365,
-                                        DemNgay = k  
-
-                                    };
-                                    db.cITRANs.Add(rutien);
-                                    stk.Balance = stk.Balance - sotien;
-                                    db.SaveChanges();
-                                }
-
-                                else
-                                {
-                                    stk.Balance = stk.Balance - sotien;
-                                    db.SaveChanges();
-                                    var lst = db.cITRANs.Where(x => x.ACCTNO == stk.ACCTNO).OrderByDescending(c => c.BKDATE).Select(c => c.BKDATE).ToList();
-                                    var asd = lst[0]; // lấy ra ngày cuối cùng rút tiền
-                                    int demlai = daynow - thisIsMagic(asd.Year, asd.Month, asd.Day); // đếm lại ngày tính lãi
-                                    CITRAN rutien = new CITRAN()
-                                    {
-                                        ACCTNO = stk.ACCTNO,
-                                        BKDATE = DateTime.Now,
-                                        SoTienRut = double.Parse(txbSoTien.Text),
-                                        TienLai = (stk.Balance * demlai * (stk.RATE / 100)) / 365,
-                                        DemNgay = demlai
-
-                                    };
-                                    db.cITRANs.Add(rutien);
-                                    db.SaveChanges();
-                                }
-                              
+                                RutKhongKH();
 
                                 for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
                                 {
@@ -127,66 +94,7 @@ namespace MoneyLover.Views
                         }
                         else
                         {
-                            if (k >= (stk.TERM * 30))
-                            {
-
-                                CITRAN rutien = new CITRAN();
-                                rutien.ACCTNO = stk.ACCTNO;
-                                rutien.BKDATE = DateTime.Now;
-                                rutien.SoTienRut = double.Parse(txbSoTien.Text);
-                                //if (stk.DEPOSITAMT == stk.Balance)
-                               // {
-                                    rutien.TienLai = (stk.Balance * (stk.TERM * 30) * (stk.RATE / 100)) / 12 + (stk.Balance *(k-(stk.TERM*30))* (stk.NPTERM / 100) / 365) ;
-                                    rutien.DemNgay = k;
-                                //}
-                                //else
-                                //{
-                                //    var lst = db.cITRANs.Where(x => x.ACCTNO == stk.ACCTNO).OrderByDescending(c => c.BKDATE).Select(c => c.BKDATE).ToList();
-                                //    var asd = lst[0]; // lấy ra ngày cuối cùng rút tiền
-                                //    int demlai = daynow - thisIsMagic(asd.Year, asd.Month, asd.Day); // đếm lại ngày tính lãi
-
-                                //    rutien.TienLai = sotien * demlai * (stk.RATE / 100) / 365;
-                                //    rutien.DemNgay = demlai;
-                                //}
-
-                                db.cITRANs.Add(rutien);
-                                stk.Balance = stk.Balance - sotien;
-                                db.SaveChanges();
-
-                                for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
-                                {
-
-                                    if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
-                                        App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
-                                }
-                                DanhSachSTK ds = new DanhSachSTK();
-                                ds.ShowDialog();
-                            }
-
-                            
-                            else
-                            {
-                           
-                               
-                                if (stk.DEPOSITAMT == stk.Balance)
-                                {
-                                    dem = k;
-                                    Chu_Y chuy = new Chu_Y();
-                                    chuy.ShowDialog();
-                                }
-
-                                else
-                                {
-                                    var lst = db.cITRANs.Where(x => x.ACCTNO == stk.ACCTNO).OrderByDescending(c => c.BKDATE).Select(c => c.BKDATE).ToList();
-                                    var asd = lst[0]; // lấy ra ngày cuối cùng rút tiền
-                                    int demlai = daynow - thisIsMagic(asd.Year, asd.Month, asd.Day);
-                                    dem = demlai;
-                                    Chu_Y chuy = new Chu_Y();
-                                    chuy.ShowDialog();
-                                }
-                                   
-
-                            }
+                            RutKH();  
                         }
                     }
 
@@ -214,6 +122,115 @@ namespace MoneyLover.Views
         private void btnHuy_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        void RutKhongKH()
+        {
+            using (var db = new MoneyEntity())
+            {
+
+              //  var stk = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
+                int daynow = thisIsMagic(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                int day = thisIsMagic(stk.FRDATE.Year, stk.FRDATE.Month, stk.FRDATE.Day);
+                int k = daynow - day;
+                if (stk.DEPOSITAMT == stk.Balance)
+                {
+                    CITRAN rutien = new CITRAN()
+                    {
+                        ACCTNO = stk.ACCTNO,
+                        BKDATE = DateTime.Now,
+                        SoTienRut = double.Parse(txbSoTien.Text),
+                        TienLai = (stk.Balance * k * (stk.RATE / 100)) / 365,
+                        DemNgay = k
+
+                    };
+                    db.cITRANs.Add(rutien);
+                    stk.Balance = stk.Balance - sotien;
+                    db.SaveChanges();
+                }
+
+                else
+                {
+                    stk.Balance = stk.Balance - sotien;
+                    db.SaveChanges();
+                    var lst = db.cITRANs.Where(x => x.ACCTNO == stk.ACCTNO).OrderByDescending(c => c.BKDATE).Select(c => c.BKDATE).ToList();
+                    var asd = lst[0]; // lấy ra ngày cuối cùng rút tiền
+                    int demlai = daynow - thisIsMagic(asd.Year, asd.Month, asd.Day); // đếm lại ngày tính lãi
+                    CITRAN rutien = new CITRAN()
+                    {
+                        ACCTNO = stk.ACCTNO,
+                        BKDATE = DateTime.Now,
+                        SoTienRut = double.Parse(txbSoTien.Text),
+                        TienLai = (stk.Balance * demlai * (stk.RATE / 100)) / 365,
+                        DemNgay = demlai
+
+                    };
+                    db.cITRANs.Add(rutien);
+                    db.SaveChanges();
+                }
+            }
+
+        }
+
+        void RutKH()
+        {
+
+            using (var db = new MoneyEntity())
+            {
+             //   var stk = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
+                int daynow = thisIsMagic(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                int day = thisIsMagic(stk.FRDATE.Year, stk.FRDATE.Month, stk.FRDATE.Day);
+                int k = daynow - day;
+                if (k >= (stk.TERM * 30))
+                {
+
+                    CITRAN rutien = new CITRAN();
+                    rutien.ACCTNO = stk.ACCTNO;
+                    rutien.BKDATE = DateTime.Now;
+                    rutien.SoTienRut = double.Parse(txbSoTien.Text);
+                    rutien.TienLai = (stk.Balance * (stk.TERM * 30) * (stk.RATE / 100)) / 12 + (stk.Balance * (k - (stk.TERM * 30)) * (stk.NPTERM / 100) / 365);
+                    rutien.DemNgay = k;
+
+
+                    db.cITRANs.Add(rutien);
+                    stk.Balance = stk.Balance - sotien;
+                    db.SaveChanges();
+
+                    for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
+                    {
+
+                        if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
+                            App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
+                    }
+                    DanhSachSTK ds = new DanhSachSTK();
+                    ds.ShowDialog();
+                }
+
+
+                else
+                {
+
+
+                    if (stk.DEPOSITAMT == stk.Balance)
+                    {
+                        dem = k;
+                        Chu_Y chuy = new Chu_Y();
+                        chuy.ShowDialog();
+                    }
+
+                    else
+                    {
+                        var lst = db.cITRANs.Where(x => x.ACCTNO == stk.ACCTNO).OrderByDescending(c => c.BKDATE).Select(c => c.BKDATE).ToList();
+                        var asd = lst[0]; // lấy ra ngày cuối cùng rút tiền
+                        int demlai = daynow - thisIsMagic(asd.Year, asd.Month, asd.Day);
+                        dem = demlai;
+                        Chu_Y chuy = new Chu_Y();
+                        chuy.ShowDialog();
+                    }
+
+
+                }
+            }
         }
     }
 }

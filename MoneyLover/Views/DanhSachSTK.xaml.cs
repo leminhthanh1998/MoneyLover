@@ -197,6 +197,12 @@ namespace MoneyLover.Views
             Application.Current.Shutdown();
         }
 
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            base.OnClosed(e);
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 

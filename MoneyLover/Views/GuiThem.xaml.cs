@@ -31,9 +31,7 @@ namespace MoneyLover.Views
         }
 
         private void btnGui_Click(object sender, RoutedEventArgs e)
-        {
-          
-            
+        {   
             using (var db = new MoneyEntity())
             {
                 var stk = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
@@ -56,8 +54,7 @@ namespace MoneyLover.Views
                             App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
                     }
                     DanhSachSTK rut = new DanhSachSTK();
-                    rut.ShowDialog();
-                
+                    rut.ShowDialog();                
             }
         }
 

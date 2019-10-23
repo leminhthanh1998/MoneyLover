@@ -47,7 +47,7 @@ namespace MoneyLover
 
                         db.users.Add(user);
                         db.SaveChanges();
-                        MessageBox.Show("Dang ky thanh cong", "Error", MessageBoxButton.OK);
+                        MessageBox.Show("Đăng ký thành công", "Thông báo", MessageBoxButton.OK);
                         for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
                         {
 
@@ -59,12 +59,12 @@ namespace MoneyLover
                     }
                     else
                     {
-                        MessageBox.Show("Nhap sai dinh dang password", "Error", MessageBoxButton.OK);
+                        MessageBox.Show("Nhập sai định dạng password", "Error", MessageBoxButton.OK);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Nhap sai dinh dang email", "Error", MessageBoxButton.OK);
+                    MessageBox.Show("Nhập sai định dạng email", "Error", MessageBoxButton.OK);
                 }
             }
         }
@@ -123,6 +123,18 @@ namespace MoneyLover
                 }
                 return false;
             }
+
+        private void btnHuy_Click(object sender, RoutedEventArgs e)
+        {
+            for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
+            {
+
+                if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
+                    App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
+            }
+            MainWindow dn = new MainWindow();
+            dn.ShowDialog();
         }
+    }
     
 }
