@@ -31,5 +31,6 @@ namespace MoneyLover.Models
         public DbSet<TLLOGS> TLLOGs { get; set; }
         public DbSet<AllCode> AllCodes { get; set; }
         public DbSet<GUITHEM>gUITHEMs { get; set; }
+        public DbSet<BANKS> bANKs { get; set; }
     }
 }

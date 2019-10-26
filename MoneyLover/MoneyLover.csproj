@@ -115,7 +115,15 @@
     <Compile Include="Migrations\201910181531334_aksdla.designer.cs">
       <DependentUpon>201910181531334_aksdla.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910261351588_banks.cs" />
+    <Compile Include="Migrations\201910261351588_banks.designer.cs">
+      <DependentUpon>201910261351588_banks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BANKS.cs" />
     <Compile Include="Models\GUITHEM.cs" />
+    <Compile Include="Views\Banks.xaml.cs">
+      <DependentUpon>Banks.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChiTietSTK.xaml.cs">
       <DependentUpon>ChiTietSTK.xaml</DependentUpon>
     </Compile>
@@ -164,6 +172,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Banks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ChiTietSTK.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -261,6 +273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910181531334_aksdla.resx">
       <DependentUpon>201910181531334_aksdla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910261351588_banks.resx">
+      <DependentUpon>201910261351588_banks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

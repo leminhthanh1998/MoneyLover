@@ -54,11 +54,32 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Ngân hàng" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left"/>
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"  x:Name="txtNganHang" Grid.Column="1" FontSize="13" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"  materialDesign:HintAssist.Hint="Tên" 
-                              TextAlignment="Left" Text="{Binding Name}"  >
-                        
-                    </TextBox>
+                    <TextBlock Text="Ngân hàng" FontSize="20" 
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Center" 
+                               TextAlignment="Left"/>
+                    <DockPanel  Grid.Column="1">
+                        <ComboBox  x:Name="txtNganHang"
+                               FontSize="13"
+                               Width="100" VerticalAlignment="Center" 
+                               HorizontalAlignment="Left"
+                               Margin="5 0 0 0"  
+                               materialDesign:HintAssist.Hint="Tên" >
+                        </ComboBox>
+                        <Button Grid.Column="2" Name="btnBank"
+                                Click="btnBank_Click"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Stretch"
+                                Margin="20"
+                                Background="White"
+                                HorizontalContentAlignment="Stretch">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source=".\img\add.ico"/>
+                            </StackPanel>
+
+                        </Button>
+                    </DockPanel>
+                    
 
                     <TextBlock Text="Trả lãi" FontSize="20" Grid.Row="2" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center" Margin="0,4.4,0,0"/>
                     <ComboBox  x:Name="cbTraLai" FontSize="13" Width="600" Grid.Row="2" 

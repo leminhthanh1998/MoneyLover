@@ -64,59 +64,8 @@ namespace MoneyLover
 
                 }
             }
-
-            //check mail
-          
-
-          
+        
             }
-        bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public static bool CheckPassword(string pass)
-        {
-            //min 6 chars, max 12 chars
-            if (pass.Length < 8 || pass.Length > 12)
-                return false;
-
-            //No white space
-            if (pass.Contains(" "))
-                return false;
-
-            //At least 1 upper case letter
-            if (!pass.Any(char.IsUpper))
-                return false;
-
-            //At least 1 lower case letter
-            if (!pass.Any(char.IsLower))
-                return false;
-
-            //No two similar chars consecutively
-            for (int i = 0; i < pass.Length - 1; i++)
-            {
-                if (pass[i] == pass[i + 1])
-                    return false;
-            }
-
-            //At least 1 special char
-            string specialCharacters = @"%!@#$%^&*()?/>.<,:;'\|}]{[_~`+=-" + "\"";
-            char[] specialCharactersArray = specialCharacters.ToCharArray();
-            foreach (char c in specialCharactersArray)
-            {
-                if (pass.Contains(c))
-                    return true;
-            }
-            return false;
-        }
 
         private void txbPass_KeyDown(object sender, KeyEventArgs e)
         {

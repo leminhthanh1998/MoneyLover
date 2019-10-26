@@ -32,6 +32,7 @@ namespace MoneyLover
 
         private void btnDK_Click(object sender, RoutedEventArgs e)
         {
+            
             using (var db = new MoneyEntity())
             {
 
@@ -57,16 +58,8 @@ namespace MoneyLover
                         DangNhap dn = new DangNhap();
                         dn.ShowDialog();
                     }
-                    else
-                    {
-                        //MessageBox.Show("Nhập sai định dạng password", "Error", MessageBoxButton.OK);
-                        CheckPassword(txbPass.Password.ToString());
-                    }
                 }
-                else
-                {
-                    MessageBox.Show("Nhập sai định dạng email", "Error", MessageBoxButton.OK);
-                }
+               
             }
         }
 
@@ -80,8 +73,14 @@ namespace MoneyLover
                 var addr = new System.Net.Mail.MailAddress(email);
                 return addr.Address == email;
             }
-            catch
+            catch (System.ArgumentException)
             {
+                MessageBox.Show("Mail không được để trống", "Thông báo", MessageBoxButton.OK);
+                return false;
+            }
+            catch (System.FormatException)
+            {
+                MessageBox.Show("Mail không đúng định dạng ","Thôn báo", MessageBoxButton.OK);
                 return false;
             }
         }
@@ -123,12 +122,12 @@ namespace MoneyLover
             }
 
             //No two similar chars consecutively
-            for (int i = 0; i < pass.Length - 1; i++)
-            {
-                if (pass[i] == pass[i + 1])
-                    MessageBox.Show("Password không chưa 2 ký tự giống nhau", "Error");
-                return false;
-            }
+            //for (int i = 0; i < pass.Length - 1; i++)
+            //{
+            //    if (pass[i] == pass[i + 1])
+            //        MessageBox.Show("Password không chưa 2 ký tự giống nhau", "Error");
+            //    return false;
+            //}
 
             //At least 1 special char
             string specialCharacters = @"%!@#$%^&*()?/>.<,:;'\|}]{[_~`+=-" + "\"";
@@ -136,8 +135,7 @@ namespace MoneyLover
             foreach (char c in specialCharactersArray)
             {
                 if (pass.Contains(c))
-                    //MessageBox.Show("Đăng ký thành công", "Thông báo");
-                return true;
+                    return true;
             }
             return false;
         }
@@ -146,7 +144,6 @@ namespace MoneyLover
         {
             for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
             {
-
                 if (App.Current.Windows[intCounter].Name != "Main_Window_wind")
                     App.Current.Windows[intCounter].Visibility = System.Windows.Visibility.Hidden;
             }

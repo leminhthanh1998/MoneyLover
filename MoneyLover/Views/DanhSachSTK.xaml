@@ -9,10 +9,10 @@
         ResizeMode="NoResize" 
         WindowStyle="None"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Danh sách sổ tiết kiệm" Height="700" Width="900">
+        Title="Danh sách sổ tiết kiệm" Height="730" Width="900">
 
        <StackPanel>
-        <Button Background="Black" Name="btnHuy"
+        <Button Background="Gray" Name="btnHuy"
                 
                 Foreground="Red" Width="900"
                         Click="btnThoat_Click"
@@ -43,9 +43,9 @@
     
                 </Button>
             </DockPanel>
-        <DockPanel >
+        <DockPanel Height="50px">
             <TextBlock Text="Tổng tiền" Margin="300 0 0 10" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <TextBox Width="200" Name="txtSum" Margin="0 10 200 20" 
+            <TextBox Width="200" Name="txtSum" Margin="0 10 200 10" 
                          IsReadOnly="True"
                          FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBox>
         </DockPanel>
@@ -61,7 +61,7 @@
             <DataGrid x:Name="dgrDangKy" Margin="5"  FontSize="15"
                       IsReadOnly="True"
                        SelectionChanged="dgrDangKy_SelectionChanged"
-                      Height="250" AutoGenerateColumns="False" CanUserAddRows="False">
+                      Height="300" AutoGenerateColumns="False" CanUserAddRows="False">
                 <DataGrid.GroupStyle>
                     <GroupStyle>
                         <GroupStyle.ContainerStyle>
@@ -152,7 +152,7 @@
                       IsReadOnly="True"
                        SelectionChanged="dgrTattoan_SelectionChanged_1"
                       ColumnWidth="*"
-                      Height="180" AutoGenerateColumns="False" CanUserAddRows="False">
+                      Height="250" AutoGenerateColumns="False" CanUserAddRows="False">
            
                 <DataGrid.Columns>
 

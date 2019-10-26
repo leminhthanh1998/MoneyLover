@@ -72,7 +72,6 @@ namespace MoneyLover
                     }
                     DanhSachSTK ds = new DanhSachSTK();
                     ds.ShowDialog();
-
             }
         }
 
