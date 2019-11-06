@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\NUnitTestAdapter.2.2.0\build\NUnitTestAdapter.props" Condition="Exists('packages\NUnitTestAdapter.2.2.0\build\NUnitTestAdapter.props')" />
   <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -50,6 +51,9 @@
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.6.0.325, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.6.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -121,6 +125,7 @@
     </Compile>
     <Compile Include="Models\BANKS.cs" />
     <Compile Include="Models\GUITHEM.cs" />
+    <Compile Include="Test\CalculatorTest.cs" />
     <Compile Include="Views\Banks.xaml.cs">
       <DependentUpon>Banks.xaml</DependentUpon>
     </Compile>
@@ -313,6 +318,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('packages\NUnitTestAdapter.2.2.0\build\NUnitTestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\NUnitTestAdapter.2.2.0\build\NUnitTestAdapter.props'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
 </Project>

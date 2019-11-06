@@ -24,10 +24,7 @@ namespace MoneyLover
         public DangKy()
         {
             InitializeComponent();
-            using (var db = new MoneyEntity())
-            {
-
-            }
+          
         }
 
         private void btnDK_Click(object sender, RoutedEventArgs e)
@@ -66,7 +63,7 @@ namespace MoneyLover
 
 
         //check mail
-        bool IsValidEmail(string email)
+       public static bool IsValidEmail(string email)
         {
             try
             {
