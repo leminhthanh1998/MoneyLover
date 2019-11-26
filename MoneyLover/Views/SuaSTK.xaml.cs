@@ -107,8 +107,7 @@ namespace MoneyLover.Views
                                                 if (double.TryParse(txbSotien.Text, out double sotien))
                                                     if (sotien > 1000000)
                                                     {
-
-                                                        CIMAST ci = new CIMAST() { };
+                                                        var ci = db.CIMASTs.Where(x => x.ACCTNO == DanhSachSTK.maSTK).Single();
                                                         ci.DEPOSITAMT = double.Parse(txbSotien.Text);
                                                         ci.RATE = double.Parse(txbLai.Text);
                                                         ci.BANK = txtNganHang.Text;
@@ -130,7 +129,7 @@ namespace MoneyLover.Views
                                                         ci.TERM = int.Parse(typeItem.Tag.ToString());
                                                         ci.TraLai = typeItem2.Content.ToString();
 
-                                                        db.CIMASTs.Add(ci);
+                                                       // db.CIMASTs.Add(ci);
                                                         db.SaveChanges();
                                                         MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButton.OK);
                                                         for (int intCounter = App.Current.Windows.Count - 1; intCounter > -1; intCounter--)
